@@ -39,6 +39,14 @@ const config = {
                         '@babel/plugin-proposal-class-properties'
                     ]
                 }
+            }, {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {}
+                    }
+                ]
             }
         ]
     },
