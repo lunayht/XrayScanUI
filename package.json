@@ -1,30 +1,59 @@
 {
-  "name": "rapidscan",
-  "version": "1.0.0",
-  "description": "UI design for xray machine console and video stream ",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tanyinghui/XrayScanUI.git"
-  },
-  "keywords": [
-    "reactjs"
-  ],
-  "author": "Ying Hui",
-  "license": "ISC",
-  "homepage": "https://github.com/tanyinghui/XrayScanUI#readme",
-  "dependencies": {
-    "@material-ui/core": "^3.9.2",
-    "@material-ui/icons": "^3.0.2",
-    "express": "^4.16.4",
-    "nodemon": "^1.18.10",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-hot-loader": "^4.7.2",
-    "rimraf": "^2.6.3",
-    "webpack": "^4.29.6"
-  }
+	"name": "rapidscan",
+	"version": "1.0.0",
+	"description": "UI design for xray machine console and video stream ",
+	"main": "app.js",
+	"scripts": {
+		"start": "nodemon --exec babel-node server/app.js",
+		"build": "rimraf dist && npm run webpack:dev && npm run start"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tanyinghui/XrayScanUI.git"
+	},
+	"keywords": [
+		"reactjs"
+	],
+	"author": "Ying Hui",
+	"license": "ISC",
+	"homepage": "https://github.com/tanyinghui/XrayScanUI#readme",
+	"dependencies": {
+		"@babel/core": "^7.3.4",
+		"@babel/plugin-proposal-class-properties": "^7.3.4",
+		"@babel/plugin-proposal-function-bind": "^7.2.0",
+		"@babel/plugin-transform-runtime": "^7.3.4",
+		"@babel/preset-env": "^7.3.4",
+		"@babel/preset-react": "^7.0.0",
+		"@material-ui/core": "^3.9.2",
+		"@material-ui/icons": "^3.0.2",
+		"babel-core": "^6.26.3",
+		"babel-loader": "^8.0.5",
+		"body-parser": "^1.18.3",
+		"bookshelf": "^0.14.2",
+		"compression": "^1.7.3",
+		"cors": "^2.8.5",
+		"dotenv": "^6.2.0",
+		"express": "^4.16.4",
+		"helmet": "^3.15.1",
+		"history": "^4.7.2",
+		"http-status-codes": "^1.3.1",
+		"knex": "^0.14.6",
+		"method-override": "^3.0.0",
+		"morgan": "^1.9.1",
+		"mysql": "^2.16.0",
+		"nodemon": "^1.18.10",
+		"path": "^0.12.7",
+		"prop-types": "^15.7.2",
+		"react": "^16.8.4",
+		"react-dom": "^16.8.4",
+		"react-hot-loader": "^4.7.2",
+		"react-redux": "^6.0.1",
+		"redux": "^4.0.1",
+		"redux-form": "^8.1.0",
+		"rimraf": "^2.6.3",
+		"webpack": "^4.29.6",
+		"webpack-hot-middleware": "^2.24.3",
+		"winston": "^3.2.1",
+		"winston-daily-rotate-file": "^3.8.0"
+	}
 }
