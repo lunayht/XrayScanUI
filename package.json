@@ -1,0 +1,30 @@
+{
+  "name": "rapidscan",
+  "version": "1.0.0",
+  "description": "UI design for xray machine console and video stream ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanyinghui/XrayScanUI.git"
+  },
+  "keywords": [
+    "reactjs"
+  ],
+  "author": "Ying Hui",
+  "license": "ISC",
+  "homepage": "https://github.com/tanyinghui/XrayScanUI#readme",
+  "dependencies": {
+    "@material-ui/core": "^3.9.2",
+    "@material-ui/icons": "^3.0.2",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-hot-loader": "^4.7.2",
+    "rimraf": "^2.6.3",
+    "webpack": "^4.29.6"
+  }
+}
