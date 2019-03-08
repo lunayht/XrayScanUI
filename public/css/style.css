@@ -1,0 +1,8 @@
+body {
+    margin: 0;
+    background-color: #d5deed;
+}
+
+body, html, #app, #app > div {
+    height: 100%;
+}

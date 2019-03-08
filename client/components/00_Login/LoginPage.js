@@ -2,8 +2,8 @@ import React from 'react';
 import {Card, CardHeader, CardContent} from '@material-ui/core';
 import {withStyles} from '@material-ui/core/styles';
 import Form from './Form';
-import background from '../../../public/LoginScreen.jpg'
-import { Z_BLOCK } from 'zlib';
+import background from '../../../public/LoginScreen.jpg';
+import history from '../../services/utils/history';
 
 const styles = {
     container: {
@@ -47,7 +47,7 @@ class LoginPage extends React.Component {
     };
     
     submitForm() {
-        alert('submit');
+        history.push('/main');
     }
 
     render() {
