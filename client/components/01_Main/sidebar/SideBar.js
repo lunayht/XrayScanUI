@@ -1,4 +1,6 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 import UserProfile from './UserProfile';
 import Logo from '../../../../public/lta-singapore.jpg';
 
@@ -10,7 +12,7 @@ class SideBar extends React.Component {
         };
 
         const lta_logo = {
-            height: 150,
+            height: 140,
             width: 350
         };
 
@@ -18,13 +20,15 @@ class SideBar extends React.Component {
             <div style={root}>
                 <img src={Logo} style={lta_logo} />
                 <UserProfile />
-                <p>
-                    Number of Bags: 
-                </p>
+                <Typography variant="h6">
+                    <div>Number of Bags: </div>
+                    <div>None</div>
+                </Typography>
                 <br />
-                <p>
-                    Current Threats: 
-                </p>
+                <Typography variant="h6">
+                    <div>Current Threats: </div>
+                    <div>None</div>
+                </Typography>
             </div>
         )
     }

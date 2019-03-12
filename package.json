@@ -1,5 +1,5 @@
 {
-	"name": "rapidscan",
+	"name": "rapiscan",
 	"version": "1.0.0",
 	"description": "UI design for xray machine console and video stream ",
 	"main": "main.js",
