@@ -13,8 +13,7 @@ class MainPage extends React.Component {
 
         const sidebar = {
             width: '25%',
-            float: 'left',
-            padding: 6
+            float: 'left'
         };
 
         const controlpanel = {

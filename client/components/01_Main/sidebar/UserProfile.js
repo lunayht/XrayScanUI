@@ -1,9 +1,16 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import User from '../../../../public/user.png';
 import history from '../../../services/utils/history';
-import { Dialog, DialogTitle, DialogActions } from '@material-ui/core';
+import styles from '../../../styles/styles';
+import { Dialog, DialogTitle, DialogActions, withStyles } from '@material-ui/core';
+
+const style = {
+    root: styles.up_root,
+    user_profile: styles.up_img,
+    text: styles.up_text,
+    btn: styles.up_btn
+}
 
 class UserProfile extends React.Component {
 
@@ -30,22 +37,13 @@ class UserProfile extends React.Component {
     }
 
     render() {
-        const root = {
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center'
-        }
-        const user_profile = {
-            height: 50,
-            width: 50,
-            margin: 10
-        };
+        const { classes } = this.props;
 
         return(
-            <div style={root}>
-                <Button size="large" fullWidth onClick={this.handleOpen}>
-                    <img src={User} style={user_profile} />
-                    <Typography variant="h5">User</Typography>
+            <div className={classes.root}>
+                <Button className={classes.btn} fullWidth onClick={this.handleOpen}>
+                    <img src={User} className={classes.user_profile} />
+                    <p className={classes.text}>User</p>
                 </Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}>
                     <DialogTitle>Do you want to log out?</DialogTitle>
@@ -59,4 +57,4 @@ class UserProfile extends React.Component {
     }
 };
 
-export default UserProfile;
+export default withStyles(style)(UserProfile);

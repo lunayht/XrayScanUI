@@ -1,11 +1,11 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core';
-import streamStyles from '../../../styles/streamStyles';
+import styles from '../../../styles/styles';
 import ZoomPad from './zoomPad';
 
 const style = {
-    container: streamStyles.container,
-    video: streamStyles.video,
+    container: styles.container,
+    video: styles.video,
 };
 
 class Stream extends React.Component {

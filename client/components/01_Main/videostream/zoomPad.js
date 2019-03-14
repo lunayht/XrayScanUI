@@ -1,10 +1,10 @@
 import React from 'react';
 import { withStyles, ButtonBase, Button } from '@material-ui/core';
-import streamStyles from '../../../styles/streamStyles';
+import styles from '../../../styles/styles';
 
 const style = {
-    root: streamStyles.root,
-    resetbtn : streamStyles.resetbtn,
+    root: styles.root,
+    resetbtn : styles.resetbtn,
 };
 
 class ZoomPad extends React.Component {
