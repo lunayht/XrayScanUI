@@ -1,4 +1,36 @@
 const styles = {
+    login_container: {
+        position: 'relative'
+    },
+    login_background: {
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        maxWidth: '100%',
+        maxHeight: '100vh',
+        height: '-webkit-fill-available',
+        zIndex: -1
+    },
+    login_root: {
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+    },
+    login_card: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        opacity: '0.9',
+    },
+    login_cardHeader: {
+        paddingBottom: '0',
+        paddingTop: '30px'
+    },
+    login_cardcontent: {
+        paddingTop: '0'
+    },
     container: {
         position: 'relative'
     },
@@ -44,6 +76,31 @@ const styles = {
     },
     up_btn: {
         padding: 0
+    },
+    sidebar_root: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    lta_logo: {
+        width: '100%',
+        height: 'auto'
+    },
+    status: {
+        margin: 10
+    },
+    controlkey: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    control_btn: {
+        height: 95,
+        width: 95,
+    },
+    control_iconSize: {
+        fontSize: 60
+    },
+    control_text: {
+        color: 'white'
     }
 }
 

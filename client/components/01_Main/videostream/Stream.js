@@ -22,4 +22,4 @@ class Stream extends React.Component {
     }
 };
 
-export default withStyles(style)(Stream);
+export default (withStyles(style)(Stream));

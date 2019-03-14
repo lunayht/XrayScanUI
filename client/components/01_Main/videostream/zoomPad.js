@@ -108,4 +108,4 @@ class ZoomPad extends React.Component {
     }
 };
 
-export default withStyles(style)(ZoomPad);
+export default (withStyles(style)(ZoomPad));

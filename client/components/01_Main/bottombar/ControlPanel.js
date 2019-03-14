@@ -1,8 +1,16 @@
 import React from 'react';
-import { Button, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { Button, MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core';
 import Forward from '@material-ui/icons/FastForwardRounded';
 import Reverse from '@material-ui/icons/FastRewindRounded';
-import Stop from '@material-ui/icons/PauseRounded'
+import Stop from '@material-ui/icons/PauseRounded';
+import styles from '../../../styles/styles';
+
+const style = {
+    controlkey: styles.controlkey,
+    iconSize: styles.control_iconSize,
+    btn: styles.control_btn,
+    text: styles.control_text,
+};
 
 class ControlPanel extends React.Component {
 
@@ -72,28 +80,8 @@ class ControlPanel extends React.Component {
     }
 
     render() {
-        const controlkey = {
-            display: 'flex',
-            flexDirection: 'row',
-        };
 
-        const iconbtn = {
-            height: 75,
-            width: 75
-        };
-
-        const btn = {
-            height: 95,
-            width: 95,
-        };
-
-        const iconSize = {
-            fontSize: 60
-        };
-
-        const text = {
-            color: 'white'
-        };
+        const { classes } = this.props;
 
         const theme = createMuiTheme({
             palette: {
@@ -106,30 +94,30 @@ class ControlPanel extends React.Component {
         });
 
         return(
-            <div style={controlkey}>
-                <Button style={btn} variant="outlined" onClick={this.reverse}>
-                    <Reverse style={iconSize}/>
+            <div className={classes.controlkey}>
+                <Button className={classes.btn} variant="outlined" onClick={this.reverse}>
+                    <Reverse className={classes.iconSize}/>
                 </Button>
-                <Button style={btn} variant="outlined" onClick={this.stop}>
-                    <Stop style={iconSize} />
+                <Button className={classes.btn} variant="outlined" onClick={this.stop}>
+                    <Stop className={classes.iconSize} />
                 </Button>
-                <Button style={btn} variant="outlined" onClick={this.forward}>
-                    <Forward style={iconSize} />
+                <Button className={classes.btn} variant="outlined" onClick={this.forward}>
+                    <Forward className={classes.iconSize} />
                 </Button>
                 <MuiThemeProvider theme={theme}>
-                    <Button variant="contained" color="primary" onClick={this.CC} style={btn}>
-                        <h1 style={text}>CC</h1>
+                    <Button className={classes.btn} variant="contained" color="primary" onClick={this.CC}>
+                        <h1 className={classes.text}>CC</h1>
                     </Button>
-                    <Button variant="contained" color="secondary" onClick={this.HP} style={btn}>
-                        <h1 style={text}>HP</h1>
+                    <Button className={classes.btn} variant="contained" color="secondary" onClick={this.HP}>
+                        <h1 className={classes.text}>HP</h1>
                     </Button>
                 </MuiThemeProvider>
-                <Button variant="contained" color="primary" onClick={this.BW} style={btn}>
-                    <h1 style={text}>BW</h1>
+                <Button variant="contained" color="primary" onClick={this.BW} className={classes.btn}>
+                    <h1 className={classes.text}>BW</h1>
                 </Button>
             </div>
         )
     }
 };
 
-export default ControlPanel;
+export default (withStyles(style)(ControlPanel));

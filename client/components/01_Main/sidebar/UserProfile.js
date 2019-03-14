@@ -57,4 +57,4 @@ class UserProfile extends React.Component {
     }
 };
 
-export default withStyles(style)(UserProfile);
+export default (withStyles(style)(UserProfile));
