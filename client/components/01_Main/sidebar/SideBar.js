@@ -12,8 +12,8 @@ class SideBar extends React.Component {
         };
 
         const lta_logo = {
-            height: 140,
-            width: 350
+            width: '100%',
+            height: 'auto'
         };
 
         return(

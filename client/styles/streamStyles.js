@@ -3,7 +3,8 @@ const streamStyles = {
         position: 'relative'
     },
     video: {
-        height: 650,
+        width: '100%',
+        height: 'auto',
         zIndex: 1
     },
     root: {
@@ -14,8 +15,8 @@ const streamStyles = {
         zIndex: 2,
         display: 'grid',
         gridTemplateColumns: 'auto auto auto',
-        height: 650,
-        width: 1155.55
+        width: '100%',
+        height: '100%'
     },
     resetbtn: {
         zIndex: 3,

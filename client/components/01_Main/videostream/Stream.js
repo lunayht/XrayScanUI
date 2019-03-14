@@ -1,5 +1,4 @@
 import React from 'react';
-import Video from '../../../../public/videostreamexample.jpg';
 import { withStyles } from '@material-ui/core';
 import streamStyles from '../../../styles/streamStyles';
 import ZoomPad from './zoomPad';
@@ -16,7 +15,7 @@ class Stream extends React.Component {
 
         return(
             <div className={classes.container}>
-                <img className={classes.video} src={Video} />
+                <video className={classes.video} src={'./video.mp4'} loop autoPlay muted/>
                 <ZoomPad />
             </div>
         )

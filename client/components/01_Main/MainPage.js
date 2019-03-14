@@ -5,24 +5,33 @@ import Sidebar from './sidebar/SideBar';
 
 class MainPage extends React.Component {
     render() {
-        const rootstyle = {
-            display: 'flex',
-            flexDirection: 'row',
+
+        const stream = {
+            width: '75%',
+            float: 'left',
         };
 
-        const videostyle = {
-            display: 'flex',
-            flexDirection: 'column'
+        const sidebar = {
+            width: '25%',
+            float: 'left',
+            padding: 6
+        };
+
+        const controlpanel = {
+            width: '75%',
+            float: 'left',
         };
 
         return(
-            <div style={rootstyle}>
-                <div style={videostyle}>
+            <div>
+                <div style={stream}>
                     <Stream />
-                    <ControlPanel />
                 </div>
-                <div>
+                <div style={sidebar}>
                     <Sidebar />
+                </div>
+                <div style={controlpanel}>
+                    <ControlPanel />
                 </div>
             </div>
         )
