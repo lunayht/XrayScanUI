@@ -4,19 +4,12 @@ import { Field, reduxForm } from 'redux-form';
 import Button from '@material-ui/core/Button';
 import {withStyles} from '@material-ui/core/styles';
 import renderText from '../../styles/renderText';
+import styles from '../../styles/styles';
 
-const styles = {
-    input: {
-        width: '400px'
-    },
-    btnDiv: {
-        margin: 'auto',
-        textAlign: 'center'
-    },
-    btn: {
-        marginTop: 15,
-        marginBottom: 15
-    }
+const style = {
+    input: styles.form_input,
+    btnDiv: styles.form_btnDiv,
+    btn: styles.form_btn
 }
 
 class Form extends React.Component {
@@ -74,4 +67,4 @@ Form.propTypes = {
 
 export default reduxForm({
     form: 'Form'
-})(withStyles(styles)(Form));
+})(withStyles(style)(Form));

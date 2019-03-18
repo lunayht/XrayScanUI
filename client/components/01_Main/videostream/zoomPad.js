@@ -1,6 +1,10 @@
 import React from 'react';
 import { withStyles, ButtonBase, Button } from '@material-ui/core';
 import styles from '../../../styles/styles';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as crudAction from '../../../actions/crudAction';
+import { USB } from '../../../constants/entity';
 
 const style = {
     root: styles.root,
@@ -59,7 +63,7 @@ class ZoomPad extends React.Component {
         alert('Test9')
     }
     reset() {
-        alert('RESET')
+        this.props.actions.usb(USB);
     }
 
     handleKeyPress(e) {
@@ -108,4 +112,8 @@ class ZoomPad extends React.Component {
     }
 };
 
-export default (withStyles(style)(ZoomPad));
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(Object.assign({}, crudAction), dispatch)
+});
+
+export default connect(null, mapDispatchToProps)(withStyles(style)(ZoomPad));

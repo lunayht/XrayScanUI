@@ -31,6 +31,17 @@ const styles = {
     login_cardcontent: {
         paddingTop: '0'
     },
+    form_input: {
+        width: '400px'
+    },
+    form_btnDiv: {
+        margin: 'auto',
+        textAlign: 'center'
+    },
+    form_btn: {
+        marginTop: 15,
+        marginBottom: 15
+    },
     container: {
         position: 'relative'
     },
