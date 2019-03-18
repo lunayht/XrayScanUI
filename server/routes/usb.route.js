@@ -6,6 +6,6 @@ const usbRoutes = express.Router();
 usbRoutes.route('/usb')
     .post((req, res) => {
         usbCtrl.usbcontrol(req, res);
-        console.log('success2')
+        // console.log('success2')
     })
 export default usbRoutes;
