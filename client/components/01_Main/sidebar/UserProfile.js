@@ -1,9 +1,8 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import User from '../../../../public/user.png';
 import history from '../../../services/utils/history';
 import styles from '../../../styles/styles';
-import { Dialog, DialogTitle, DialogActions, withStyles } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogActions, withStyles, Button } from '@material-ui/core';
 
 const style = {
     root: styles.up_root,

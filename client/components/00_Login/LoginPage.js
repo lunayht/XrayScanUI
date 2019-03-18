@@ -1,43 +1,17 @@
 import React from 'react';
-import {Card, CardHeader, CardContent} from '@material-ui/core';
-import {withStyles} from '@material-ui/core/styles';
+import { Card, CardHeader, CardContent, withStyles } from '@material-ui/core';
 import Form from './Form';
 import background from '../../../public/LoginScreen.jpg';
 import history from '../../services/utils/history';
+import styles from '../../styles/styles';
 
-const styles = {
-    container: {
-        position: 'relative'
-    },
-    background: {
-        display: 'block',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        maxWidth: '100%',
-        maxHeight: '100vh',
-        height: '-webkit-fill-available',
-        zIndex: -1
-    },
-    root: {
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
-    },
-    card: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        opacity: '0.9',
-    },
-    cardHeader: {
-        paddingBottom: '0',
-        paddingTop: '30px'
-    },
-    cardcontent: {
-        paddingTop: '0'
-    }
+const style = {
+    container: styles.login_container,
+    background: styles.login_background,
+    root: styles.login_root,
+    card: styles.login_card,
+    cardHeader: styles.login_cardHeader,
+    cardcontent: styles.login_cardcontent
 };
 
 class LoginPage extends React.Component {
@@ -69,4 +43,4 @@ class LoginPage extends React.Component {
     }
 };
 
-export default (withStyles(styles)(LoginPage));
+export default (withStyles(style)(LoginPage));
