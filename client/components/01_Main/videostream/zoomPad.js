@@ -63,7 +63,7 @@ class ZoomPad extends React.Component {
         alert('Test9')
     }
     reset() {
-        this.props.actions.usb(USB).then(alert('hihi'));
+        this.props.actions.usb(USB);
     }
 
     handleKeyPress(e) {
