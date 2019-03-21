@@ -15,11 +15,16 @@ class Stream extends React.Component {
 
         return(
             <div className={classes.container}>
-                <video className={classes.video} src={'./video.mp4'} loop autoPlay muted/>
+                <video className={classes.video} autoPlay muted>
+                    <source src={'http://localhost:8080/video.ogg'} type="video/ogg" />
+                    This browser does not support the video tag.
+                </video>
                 <ZoomPad />
             </div>
         )
     }
 };
+
+// In VLC, the sout command is :sout=#transcode{vcodec=theo,vb=800,acodec=none}:http{mux=ogg,dst=:8080/video.ogg}:sout-keep
 
 export default (withStyles(style)(Stream));
