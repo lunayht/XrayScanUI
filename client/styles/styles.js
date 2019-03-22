@@ -43,12 +43,15 @@ const styles = {
         marginBottom: 15
     },
     container: {
-        position: 'relative'
+        position: 'relative',
+        overflow: 'hidden'
     },
     video: {
         width: '100%',
         height: 'auto',
-        zIndex: 1
+        zIndex: 1,
+        marginBottom: '-110px',
+        marginTop: '-110px'
     },
     root: {
         position: 'absolute',
