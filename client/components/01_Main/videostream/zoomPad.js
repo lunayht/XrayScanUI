@@ -36,34 +36,34 @@ class ZoomPad extends React.Component {
     };
 
     handleClick1() {
-        alert('Test1')
+        this.props.actions.usb(USB, {data: '1'});
     }
     handleClick2() {
-        alert('Test2')
+        this.props.actions.usb(USB, {data: '2'});
     }
     handleClick3() {
-        alert('Test3')
+        this.props.actions.usb(USB, {data: '3'});
     }
     handleClick4() {
-        alert('Test4')
+        this.props.actions.usb(USB, {data: '4'});
     }
     handleClick5() {
-        alert('Test5')
+        this.props.actions.usb(USB, {data: '5'});
     }
     handleClick6() {
-        alert('Test6')
+        this.props.actions.usb(USB, {data: '6'});
     }
     handleClick7() {
-        alert('Test7')
+        this.props.actions.usb(USB, {data: '7'});
     }
     handleClick8() {
-        alert('Test8')
+        this.props.actions.usb(USB, {data: '8'});
     }
     handleClick9() {
-        alert('Test9')
+        this.props.actions.usb(USB, {data: '9'});
     }
     reset() {
-        this.props.actions.usb(USB);
+        this.props.actions.usb(USB, {data: '0'});
     }
 
     handleKeyPress(e) {
