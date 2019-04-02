@@ -28,7 +28,7 @@ class ControlPanel extends React.Component {
         this.CC = this.CC.bind(this);
         this.HP = this.HP.bind(this);
     };
-    
+
     componentDidMount() {
         document.addEventListener('keydown', this.handleKeyPress);
     };
@@ -78,7 +78,7 @@ class ControlPanel extends React.Component {
             // K for CC
             this.CC();
         } else if (e.keyCode === 80) {
-            // P for HP 
+            // P for HP
             this.HP();
         }
     }
@@ -128,4 +128,8 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, crudAction), dispatch)
 });
 
+<<<<<<< HEAD
 export default connect(null, mapDispatchToProps)(withStyles(style)(ControlPanel));
+=======
+export default connect(null, mapDispatchToProps)(withStyles(style)(ControlPanel));
+>>>>>>> 68f2e68a42bc68b34d9224a96d1ca1aab7b07465
