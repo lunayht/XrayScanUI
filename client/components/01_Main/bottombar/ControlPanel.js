@@ -4,6 +4,10 @@ import Forward from '@material-ui/icons/FastForwardRounded';
 import Reverse from '@material-ui/icons/FastRewindRounded';
 import Stop from '@material-ui/icons/PauseRounded';
 import styles from '../../../styles/styles';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as crudAction from '../../../actions/crudAction';
+import { USB } from '../../../constants/entity';
 
 const style = {
     controlkey: styles.controlkey,
@@ -34,27 +38,27 @@ class ControlPanel extends React.Component {
     };
 
     reverse() {
-        alert('REVERSE')
+        this.props.actions.usb(USB, {data: 'q'});
     };
 
     stop() {
-        alert('STOP')
+        this.props.actions.usb(USB, {data: 'r'});
     };
 
     forward() {
-        alert('FORWARD')
+        this.props.actions.usb(USB, {data: 's'});
     };
 
     BW() {
-        alert('BW')
+        this.props.actions.usb(USB, {data: 'n'});
     };
 
     CC() {
-        alert('CC')
+        this.props.actions.usb(USB, {data: 'k'});
     };
 
     HP() {
-        alert('HP')
+        this.props.actions.usb(USB, {data: 'p'});
     };
 
     handleKeyPress(e) {
@@ -120,4 +124,8 @@ class ControlPanel extends React.Component {
     }
 };
 
-export default (withStyles(style)(ControlPanel));
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(Object.assign({}, crudAction), dispatch)
+});
+
+export default connect(null, mapDispatchToProps)(withStyles(style)(ControlPanel));

@@ -2,6 +2,7 @@ import * as httpService from '../services/httpService';
 import * as commonAction from './commonAction';
 
 export function usb(entity, data) {
+    console.log(data)
     return function(dispatch) {
         return httpService.data(entity, data)
         .catch((error) => {

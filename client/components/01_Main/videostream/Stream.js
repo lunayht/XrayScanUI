@@ -15,10 +15,10 @@ class Stream extends React.Component {
 
         return(
             <div className={classes.container}>
-                <video className={classes.video} autoPlay muted>
-                    <source src={'http://localhost:8080/video.ogg'} type="video/ogg" />
-                    This browser does not support the video tag.
-                </video>
+                <video className={classes.video} src={'http://localhost:8080/video'} autoPlay muted />
+                    {/* <source src={'http://localhost:8080/video.ogg'} /> */}
+                    {/* This browser does not support the video tag. */}
+                {/* </video> */}
                 <ZoomPad />
             </div>
         )

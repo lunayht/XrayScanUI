@@ -3,8 +3,9 @@ console.log('Program is running......');
 
 usb.on('attach', function(device) {
     console.log('New device attached');
-    
+    console.log(device);
     device.open();
+    console.log('Device opened!');
     
     var deviceInterface = device.interface(0);
     
@@ -16,19 +17,20 @@ usb.on('attach', function(device) {
 
     inEndpoint.transferType = 3;
     inEndpoint.startPoll(1, 64);
-    inEndpoint.transfer(64, function(data, error) {
-        if (!error) {
-            console.log(data);
-        } else {
-            console.log(error);
-        }
-    });
-    inEndpoint.on('data', function(data) {
-        console.log(data);
-    });
-    inEndpoint.on('error', function(error) {
-        console.log(error);
-    });
+    
+    // inEndpoint.transfer(64, function(data, error) {
+    //     if (!error) {
+    //         console.log(data);
+    //     } else {
+    //         console.log(error);
+    //     }
+    // });
+    // inEndpoint.on('data', function(data) {
+    //     console.log(data);
+    // });
+    // inEndpoint.on('error', function(error) {
+    //     console.log(error);
+    // });
     
     // outEndpoint.transferType = 3;
     // outEndpoint.startPoll(1, 64);
