@@ -21,6 +21,7 @@ app.use(cors());
 app.use(helmet());
 app.use(compression());
 app.use(methodOverride());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(express.static(constant.assetsDir));
