@@ -4,7 +4,7 @@ import * as usbCtrl from '../controllers/usb.controller';
 const usbRoutes = express.Router();
 
 usbRoutes.route('/usb')
-    .put((req, res) => {
+    .post((req, res) => {
         usbCtrl.usbcontrol(req, res);
         // console.log('success2')
     })
