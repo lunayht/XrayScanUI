@@ -1,10 +1,11 @@
+var shell = require('shelljs');
+
 export function usbcontrol(req, res) {
     const { data } = req.body;
-    console.log('DATA: ' + data);
+    let shellusb = `echo ` + data ;
+    console.log(shellusb);
+    shell.exec(shellusb);
     res.send({
-        // data: data,
-        data: data,
         success: true
     });
-    // console.log(res);
 };
