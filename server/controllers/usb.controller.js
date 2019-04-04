@@ -6,6 +6,7 @@ export function usbcontrol(req, res) {
     console.log(shellusb);
     shell.exec(shellusb);
     res.send({
+        data: data,
         success: true
     });
 };
