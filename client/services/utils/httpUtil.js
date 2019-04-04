@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export function save(url, endpoint, data) {
+export function save(data) {
     return axios
-        .post(url + endpoint, data, {
+        .post(data, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

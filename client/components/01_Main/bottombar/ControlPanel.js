@@ -7,7 +7,7 @@ import styles from '../../../styles/styles';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as crudAction from '../../../actions/crudAction';
-import { USB } from '../../../constants/entity';
+// import { USB } from '../../../constants/entity';
 
 const style = {
     controlkey: styles.controlkey,
@@ -38,27 +38,27 @@ class ControlPanel extends React.Component {
     };
 
     reverse() {
-        this.props.actions.usb(USB, {data: 'q'});
+        this.props.actions.usb({data: 'q'});
     };
 
     stop() {
-        this.props.actions.usb(USB, {data: 'r'});
+        this.props.actions.usb({data: 'r'});
     };
 
     forward() {
-        this.props.actions.usb(USB, {data: 's'});
+        this.props.actions.usb({data: 's'});
     };
 
     BW() {
-        this.props.actions.usb(USB, {data: 'n'});
+        this.props.actions.usb({data: 'n'});
     };
 
     CC() {
-        this.props.actions.usb(USB, {data: 'k'});
+        this.props.actions.usb({data: 'k'});
     };
 
     HP() {
-        this.props.actions.usb(USB, {data: 'p'});
+        this.props.actions.usb({data: 'p'});
     };
 
     handleKeyPress(e) {

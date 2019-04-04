@@ -1,7 +1,7 @@
 export function usbcontrol(req, res) {
     const { data } = req.body;
     console.log('DATA: ' + data);
-    res.json({
+    res.send({
         success: true
     });
 };

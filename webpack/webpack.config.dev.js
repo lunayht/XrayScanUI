@@ -1,6 +1,7 @@
 'use strict'; // cannot use undeclared variables 
 const path = require('path');
 const webpack = require('webpack');
+const env = process.env.NODE_ENV;
 
 /*
  * process.cwd() is used to determine the correct base directory.
@@ -16,7 +17,7 @@ const config = {
             './main.js' //entry point of project
         ]
     },
-    mode: 'development',
+    mode: env,
     module: {
         rules: [
             { //To transform all ES6 and JSX syntax

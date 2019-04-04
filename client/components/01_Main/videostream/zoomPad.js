@@ -4,7 +4,7 @@ import styles from '../../../styles/styles';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as crudAction from '../../../actions/crudAction';
-import { USB } from '../../../constants/entity';
+// import { USB } from '../../../constants/entity';
 
 const style = {
     root: styles.root,
@@ -36,34 +36,34 @@ class ZoomPad extends React.Component {
     };
 
     handleClick1() {
-        this.props.actions.usb(USB, {data: '1'});
+        this.props.actions.usb({data: '1'});
     }
     handleClick2() {
-        this.props.actions.usb(USB, {data: '2'});
+        this.props.actions.usb({data: '2'});
     }
     handleClick3() {
-        this.props.actions.usb(USB, {data: '3'});
+        this.props.actions.usb({data: '3'});
     }
     handleClick4() {
-        this.props.actions.usb(USB, {data: '4'});
+        this.props.actions.usb({data: '4'});
     }
     handleClick5() {
-        this.props.actions.usb(USB, {data: '5'});
+        this.props.actions.usb({data: '5'});
     }
     handleClick6() {
-        this.props.actions.usb(USB, {data: '6'});
+        this.props.actions.usb({data: '6'});
     }
     handleClick7() {
-        this.props.actions.usb(USB, {data: '7'});
+        this.props.actions.usb({data: '7'});
     }
     handleClick8() {
-        this.props.actions.usb(USB, {data: '8'});
+        this.props.actions.usb({data: '8'});
     }
     handleClick9() {
-        this.props.actions.usb(USB, {data: '9'});
+        this.props.actions.usb({data: '9'});
     }
     reset() {
-        this.props.actions.usb(USB, {data: '0'});
+        this.props.actions.usb({data: '0'});
     }
 
     handleKeyPress(e) {

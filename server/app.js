@@ -10,14 +10,14 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack/webpack.config.dev';
 
 if (process.env.NODE_ENV === 'development') {
-
+    console.log('App running in development mode!')
     const compiler = webpack(webpackConfig);
     app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: webpackConfig.output.publicPath}));
     app.use(webpackHotMiddleware(compiler));
 }
 
 // Router
-app.use('/api', routes);
+app.use('/', routes);
 
 // Landing page
 app.get('*', (req, res) => {

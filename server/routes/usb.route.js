@@ -3,8 +3,10 @@ import * as usbCtrl from '../controllers/usb.controller';
 
 const usbRoutes = express.Router();
 
-usbRoutes.route('/usb')
+usbRoutes.route('/')
     .post((req, res) => {
-        usbCtrl.usbcontrol(req, res);
+        res.send(req.body);
+        console.log(res);
     })
+
 export default usbRoutes;

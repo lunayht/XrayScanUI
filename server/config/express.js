@@ -12,16 +12,14 @@ const app = express();
 
 require('dotenv').config();
 
-app.set('port', process.env.APP_PORT || 999);
+app.set('port', process.env.APP_PORT || 3000);
 app.set('host', process.env.APP_HOST || 'localhost');
-
-app.use(express.static(constant.distDir));
 
 app.use(cors());
 app.use(helmet());
 app.use(compression());
 app.use(methodOverride());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(express.static(constant.assetsDir));
