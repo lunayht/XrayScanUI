@@ -50,8 +50,8 @@ const styles = {
         width: '100%',
         height: 'auto',
         zIndex: 1,
-        marginBottom: '-110px',
-        marginTop: '-110px'
+        marginBottom: '-60px',
+        marginTop: '-60px'
     },
     root: {
         position: 'absolute',
