@@ -64,19 +64,15 @@
 		"redux-logger": "^3.0.6",
 		"redux-thunk": "^2.3.0",
 		"rimraf": "^2.6.3",
-		"robotjs": "^0.5.1",
-		"safe-buffer": "^5.1.2",
-		"serialport": "^7.1.4",
-		"usb": "^1.5.0",
 		"webpack-dev-middleware": "^3.6.1",
 		"webpack-hot-middleware": "^2.24.3",
 		"winston": "^3.2.1",
-		"winston-daily-rotate-file": "^3.8.0",
-		"yallist": "^3.0.3"
+		"winston-daily-rotate-file": "^3.8.0"
 	},
 	"devDependencies": {
 		"@babel/node": "^7.0.0",
 		"@hot-loader/react-dom": "^16.8.6",
+		"shelljs": "^0.8.3",
 		"webpack": "^4.29.6",
 		"webpack-cli": "^3.3.0",
 		"webpack-merge": "^4.2.1"
