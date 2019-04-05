@@ -5,7 +5,7 @@ import User from '../models/user.model';
 import logger from '../config/winston';
 
 export function login(req, res) {
-    const {userid, password} = req.body;
+    const { userid, password } = req.body;
     User.query({
         where: {userid: userid},
     }).fetch().then(user => {
@@ -17,7 +17,7 @@ export function login(req, res) {
                     userid: user.get('userid')
                 }, process.env.TOKEN_SECRET_KEY);
 
-                res.json({
+                res.send({
                     success: true,
                     token,
                     userid:  user.get('userid')
@@ -25,7 +25,7 @@ export function login(req, res) {
             } else {
                 logger.log('error', 'Authentication failed. Invalid password.');
 
-                res.status(HttpStatus.UNAUTHORIZED).json({
+                res.status(HttpStatus.UNAUTHORIZED).send({
                     success: false,
                     message: 'Authentication failed. Invalid password.'
                 });
@@ -33,7 +33,7 @@ export function login(req, res) {
         } else {
             logger.log('error', 'Invalid userID or password.');
 
-            res.status(HttpStatus.UNAUTHORIZED).json({
+            res.status(HttpStatus.UNAUTHORIZED).send({
                 success: false, message: 'Invalid userID or password.'
             });
         }

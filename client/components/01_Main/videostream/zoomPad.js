@@ -4,7 +4,6 @@ import styles from '../../../styles/styles';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as crudAction from '../../../actions/crudAction';
-// import { USB } from '../../../constants/entity';
 
 const style = {
     root: styles.root,
