@@ -1,12 +1,12 @@
 import React from 'react';
-import { Card, CardHeader, CardContent, withStyles } from '@material-ui/core';
+import { Card, CardHeader, CardContent, withStyles, Typography } from '@material-ui/core';
 import Form from './Form';
 import background from '../../../public/LoginScreen.jpg';
-import history from '../../utils/history';
 import styles from '../../styles/styles';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as authAction from '../../actions/authAction';
+import CustomizedSnackBar from './CustomizedSnackBar';
 
 const style = {
     container: styles.login_container,
@@ -25,11 +25,10 @@ class LoginPage extends React.Component {
     
     submitForm(formProps) {
         this.props.actions.login(formProps);
-        history.push('/main');
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, errorMessage } = this.props;
 
         return(
             <div className={classes.container}>
@@ -41,6 +40,12 @@ class LoginPage extends React.Component {
                             <Form onSubmit={this.submitForm}/>
                         </CardContent>
                     </Card>
+                    {errorMessage  &&
+                        <CustomizedSnackBar
+                            variant="error"
+                            className={classes.margin}
+                            message={ errorMessage }
+                    />}
                 </div>
             </div>
         )

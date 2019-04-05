@@ -1,8 +1,10 @@
 import React from 'react';
 import User from '../../../../public/user.png';
-import history from '../../../utils/history';
 import styles from '../../../styles/styles';
 import { Dialog, DialogTitle, DialogActions, withStyles, Button } from '@material-ui/core';
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux';
+import * as authAction from '../../../actions/authAction';
 
 const style = {
     root: styles.up_root,
@@ -32,7 +34,7 @@ class UserProfile extends React.Component {
     }
 
     handleLogOut() {
-        history.push('/');
+        this.props.actions.logout();
     }
 
     render() {
@@ -56,4 +58,8 @@ class UserProfile extends React.Component {
     }
 };
 
-export default (withStyles(style)(UserProfile));
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(Object.assign({}, authAction), dispatch)
+});
+
+export default connect(null, mapDispatchToProps)(withStyles(style)(UserProfile));
