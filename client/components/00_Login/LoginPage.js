@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardHeader, CardContent, withStyles } from '@material-ui/core';
 import Form from './Form';
 import background from '../../../public/LoginScreen.jpg';
-import history from '../../services/utils/history';
+import history from '../../utils/history';
 import styles from '../../styles/styles';
 
 const style = {

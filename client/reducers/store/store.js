@@ -3,7 +3,7 @@ import { routerMiddleware } from 'connected-react-router';
 import thunkMiddleware from 'redux-thunk';
 import logger from 'redux-logger';
 
-import history from '../../services/utils/history';
+import history from '../../utils/history';
 import createRootReducer from '../rootReducer';
 
 const middleware = routerMiddleware(history);

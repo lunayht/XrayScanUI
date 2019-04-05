@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import store from './reducers/store/store';
-import history from '../client/services/utils/history';
+import history from './utils/history';
 import App from './containers/AppContainer';
 
 const mountNode = document.getElementById('root');

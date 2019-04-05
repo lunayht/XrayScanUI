@@ -31,10 +31,10 @@ export function login(req, res) {
                 });
             }
         } else {
-            logger.log('error', 'Invalid username or password.');
+            logger.log('error', 'Invalid userID or password.');
 
             res.status(HttpStatus.UNAUTHORIZED).json({
-                success: false, message: 'Invalid username or password.'
+                success: false, message: 'Invalid userID or password.'
             });
         }
     });

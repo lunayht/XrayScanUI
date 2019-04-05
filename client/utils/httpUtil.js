@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function save(url, data) {
+export function save(data) {
     return axios
         .post('/', data, {
             headers: {

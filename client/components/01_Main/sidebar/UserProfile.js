@@ -1,6 +1,6 @@
 import React from 'react';
 import User from '../../../../public/user.png';
-import history from '../../../services/utils/history';
+import history from '../../../utils/history';
 import styles from '../../../styles/styles';
 import { Dialog, DialogTitle, DialogActions, withStyles, Button } from '@material-ui/core';
 
