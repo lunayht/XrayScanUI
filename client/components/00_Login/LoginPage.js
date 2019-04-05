@@ -4,6 +4,9 @@ import Form from './Form';
 import background from '../../../public/LoginScreen.jpg';
 import history from '../../utils/history';
 import styles from '../../styles/styles';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as authAction from '../../actions/authAction';
 
 const style = {
     container: styles.login_container,
@@ -20,7 +23,8 @@ class LoginPage extends React.Component {
         this.submitForm = this.submitForm.bind(this);
     };
     
-    submitForm() {
+    submitForm(formProps) {
+        this.props.actions.login(formProps);
         history.push('/main');
     }
 
@@ -43,4 +47,14 @@ class LoginPage extends React.Component {
     }
 };
 
-export default (withStyles(style)(LoginPage));
+const mapStateToProps = state => ({
+    token: state.auth.token,
+    isAuthenticated: state.auth.isAuthenticated,
+    errorMessage: state.auth.errorMessage
+});
+
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(Object.assign({}, authAction), dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(style)(LoginPage));

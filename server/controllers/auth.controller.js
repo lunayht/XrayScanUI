@@ -10,7 +10,7 @@ export function login(req, res) {
         where: {userid: userid},
     }).fetch().then(user => {
         if (user) {
-            if (bcrypt.compareSync(password, user.get('password'))) {
+            if (password === user.get('password')) {
 
                 const token = jwt.sign({
                     id: user.get('id'),

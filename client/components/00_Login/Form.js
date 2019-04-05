@@ -16,7 +16,7 @@ class Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
+            userid: '',
             password: ''
         };
         this.handleChange = this.handleChange.bind(this);
@@ -32,9 +32,9 @@ class Form extends React.Component {
         return(
             <form method="post" onSubmit={handleSubmit(onSubmit)}>
                 <Field
-                label="Username"
+                label="UserID"
                 type="text"
-                name="username"
+                name="userid"
                 component={renderText}
                 value={this.state.value}
                 onChange={this.handleChange}
