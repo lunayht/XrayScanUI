@@ -26,7 +26,6 @@ class LoginPage extends React.Component {
     
     submitForm(formProps) {
         this.props.actions.login(formProps);
-        console.log('IAMHERE');
         console.log(store.getState().auth.isAuthenticated);
     }
 

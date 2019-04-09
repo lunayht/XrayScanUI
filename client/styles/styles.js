@@ -115,6 +115,45 @@ const styles = {
     },
     control_text: {
         color: 'white'
+    },
+    alert: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+    alerttitle: {
+        fontWeight: 'bold'
+    },
+    warningicon: {
+        margin: 10,
+        width: 40,
+        height: 40
+    },
+    alertcontent: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 20
+    },
+    alertdiv: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    subtitle: {
+        marginRight: 10
+    },
+    weapontitle: {
+        fontWeight: 'bold'
+    },
+    action: {
+        justifyContent: 'center'
+    },
+    alertbtn: {
+        width: 250,
+        fontSize: 18
     }
 }
 

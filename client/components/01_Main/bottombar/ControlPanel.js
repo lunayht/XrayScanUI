@@ -7,7 +7,7 @@ import styles from '../../../styles/styles';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as crudAction from '../../../actions/crudAction';
-// import { USB } from '../../../constants/entity';
+import AlertDialog from '../alert/AlertDialog';
 
 const style = {
     controlkey: styles.controlkey,
@@ -20,6 +20,10 @@ class ControlPanel extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            open: false
+        };
+        this.handleClose = this.handleClose.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.reverse = this.reverse.bind(this);
         this.stop = this.stop.bind(this);
@@ -38,7 +42,12 @@ class ControlPanel extends React.Component {
     };
 
     reverse() {
+        this.setState({ open: true });
         this.props.actions.usb({data: 'q'});
+    };
+
+    handleClose() {
+        this.setState({ open: false });
     };
 
     stop() {
@@ -119,6 +128,9 @@ class ControlPanel extends React.Component {
                 <Button variant="contained" color="primary" onClick={this.BW} className={classes.btn}>
                     <h1 className={classes.text}>BW</h1>
                 </Button>
+                <span>
+                    <AlertDialog open={this.state.open} onClose={this.handleClose} />
+                </span>
             </div>
         )
     }
