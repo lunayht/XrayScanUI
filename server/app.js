@@ -21,15 +21,25 @@ app.use('/', routes);
 
 // Landing page
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+    res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 // Error Handler
 app.use(errorHandler.notFoundErrorHandler);
 app.use(errorHandler.errorHandler);
 
-app.listen(app.get('port'), app.get('host'), () => {
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+io.on('connection', function(socket){
+    console.log('A user connected');
+    socket.on('disconnect', function(){
+        console.log('A user disconnected');
+    });
+});
+
+http.listen(app.get('port'), app.get('host'), () => {
     console.log(`Server running at http://${app.get('host')}:${app.get('port')}`);
 });
 
-export default app;
+export default http;
