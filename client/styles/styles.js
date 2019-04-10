@@ -153,6 +153,12 @@ const styles = {
     alertbtn: {
         width: 250,
         fontSize: 18
+    },
+    imgstyle: {
+        maxHeight: 400,
+        maxWidth: 400,
+        height: 'auto',
+        width: 'auto'
     }
 }
 

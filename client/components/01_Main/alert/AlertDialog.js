@@ -18,7 +18,8 @@ const style = {
 	alertdiv: styles.alertdiv,
 	weapontitle: styles.weapontitle,
 	action: styles.action,
-	alertbtn: styles.alertbtn
+	alertbtn: styles.alertbtn,
+	imgstyle: styles.imgstyle
 }
 
 class AlertDialog extends React.Component {
@@ -47,7 +48,7 @@ class AlertDialog extends React.Component {
 		
 		const socket = socketIOClient(this.state.endpoint);
 		socket.on('data', (data) => {
-			console.log(data)
+			// console.log(data)
 			this.setState({ 
 				weapon: data.weapon,
 				img: data.img,
@@ -65,8 +66,8 @@ class AlertDialog extends React.Component {
 						</Typography>
 					</div>
                     <DialogContent className={classes.alertcontent}>
-						{/* <img src={`data:image/jpeg;base64,${binaryData}`} /> */}
-						<img src={Weapon} />
+						<img className={classes.imgstyle} src={`data:image/jpg;base64, ${this.state.img}`} alt="Red dot" />
+						{/* <img src={Weapon} /> */}
 						<Typography variant="h6">
 							Possible threat identified! 
 						</Typography>
