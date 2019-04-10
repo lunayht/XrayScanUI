@@ -142,11 +142,10 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'center'
     },
-    subtitle: {
-        marginRight: 10
-    },
     weapontitle: {
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginRight: 10,
+        marginLeft: 10
     },
     action: {
         justifyContent: 'center'

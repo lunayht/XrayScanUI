@@ -2,8 +2,36 @@ import React from 'react';
 import Stream from './videostream/Stream';
 import ControlPanel from './bottombar/ControlPanel';
 import Sidebar from './sidebar/SideBar';
+import AlertDialog from './alert/AlertDialog';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as crudAction from '../../actions/crudAction';
+import socketIOClient from 'socket.io-client';
 
 class MainPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            endpoint: "http://localhost:3000",
+            open: false
+        };
+        this.handleClose = this.handleClose.bind(this);
+    };
+
+    componentDidMount() {
+        const socket = socketIOClient(this.state.endpoint);
+		socket.on('data', () => {
+			this.props.actions.usb({data: 'r'});
+			this.setState({ 
+				open: true
+            });
+		})
+    };
+
+    handleClose() {
+        this.setState({ open: false });
+    };
+
     render() {
 
         const stream = {
@@ -32,9 +60,16 @@ class MainPage extends React.Component {
                 <div style={controlpanel}>
                     <ControlPanel />
                 </div>
+                <span>
+                    <AlertDialog open={this.state.open} onClose={this.handleClose} />
+                </span>
             </div>
         )
     }
 };
 
-export default MainPage;
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(Object.assign({}, crudAction), dispatch)
+});
+
+export default connect(null, mapDispatchToProps)(MainPage);

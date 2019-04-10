@@ -36,6 +36,10 @@ io.on('connection', function(socket){
     socket.on('disconnect', function(){
         console.log('A user disconnected');
     });
+    socket.on('data', function(data){
+        console.log(data);
+        io.sockets.emit('data', data)
+    });
 });
 
 http.listen(app.get('port'), app.get('host'), () => {
