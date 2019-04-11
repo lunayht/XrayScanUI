@@ -15,7 +15,9 @@ class Stream extends React.Component {
 
         return(
             <div className={classes.container}>
-                <video className={classes.video} src={'http://localhost:8080/video'} autoPlay muted />
+                <img className={classes.video} src="http://127.0.0.1:8080/?action=stream&amp;amp;ignored.mjpg" 
+                alt="http://127.0.0.1:8080/?action=stream&amp;amp;ignored.mjpg"></img>
+                {/* <video className={classes.video} src={'http://localhost:8080/video'} autoPlay muted /> */}
                     {/* <source src={'http://localhost:8080/video.ogg'} /> */}
                     {/* This browser does not support the video tag. */}
                 {/* </video> */}
