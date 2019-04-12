@@ -4,7 +4,7 @@ import Weapon from '../../../../public/ammunition.png';
 import styles from '../../../styles/styles';
 import { Dialog, DialogActions, withStyles, Button, DialogContent, Typography } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/WarningRounded';
-import socketIOClient from 'socket.io-client';
+import io from 'socket.io-client';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as crudAction from '../../../actions/crudAction';
@@ -22,39 +22,44 @@ const style = {
 	imgstyle: styles.imgstyle
 }
 
+let socket = io.connect("http://10.0.0.215:9000");
+
 class AlertDialog extends React.Component {
 
 	constructor() {
 		super();
 		this.state = {
-			endpoint: "http://localhost:3000",
+			endpoint: "http://10.0.0.215:9000",
 			weapon: '',
 			img: '',
-			percentage: ''
+			percentage: '',
 		};
+		this.handleResume = this.handleResume.bind(this);
+		this.handleLogThreat = this.handleLogThreat.bind(this);
 	}
 
-    handleResume = () => {
+    handleResume() {
+		socket.emit('delete');
 		this.props.onClose();
-		this.props.actions.usb({data: 's'});
+		// this.props.actions.usb({data: 's'});
+		// const socket = io.connect(this.state.endpoint);
+		
 	}
 	
-	handleLogThreat = () => {
+	handleLogThreat() {
 		alert('Log Threat');
 	}
 
     render() {
 		const { classes, onClose, ... other } = this.props;
 		
-		const socket = socketIOClient(this.state.endpoint);
-		socket.on('data', (data) => {
-			// console.log(data)
+		socket.on('ready', (detectedObject) => {
 			this.setState({ 
-				weapon: data.weapon,
-				img: data.img,
-				percentage: data.percentage
-			})
-		})
+				weapon: detectedObject.weapon,
+				img: detectedObject.img,
+				percentage: detectedObject.percentage
+			});
+		});
 
         return(
             <div className={classes.root}>
@@ -75,7 +80,6 @@ class AlertDialog extends React.Component {
 							<Typography className={classes.weapontitle} variant="h6">
 								{this.state.weapon}
 							</Typography>
-							<div />
 							<Typography className={classes.weapontitle} variant="h6" >
 								{this.state.percentage}
 							</Typography>

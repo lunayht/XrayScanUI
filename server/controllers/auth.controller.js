@@ -1,6 +1,5 @@
 import HttpStatus from 'http-status-codes';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
 import User from '../models/user.model';
 import logger from '../config/winston';
 

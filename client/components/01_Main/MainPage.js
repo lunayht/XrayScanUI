@@ -6,26 +6,17 @@ import AlertDialog from './alert/AlertDialog';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as crudAction from '../../actions/crudAction';
-import socketIOClient from 'socket.io-client';
+import io from 'socket.io-client';
+
+let socket = io.connect("http://10.0.0.215:9000");
 
 class MainPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            endpoint: "http://localhost:3000",
             open: false
         };
         this.handleClose = this.handleClose.bind(this);
-    };
-
-    componentDidMount() {
-        const socket = socketIOClient(this.state.endpoint);
-		socket.on('data', () => {
-			this.props.actions.usb({data: 'r'});
-			this.setState({ 
-				open: true
-            });
-		})
     };
 
     handleClose() {
@@ -48,6 +39,14 @@ class MainPage extends React.Component {
             width: '75%',
             float: 'left',
         };
+
+        socket.on('ready', () => {
+            console.log('data');
+			// this.props.actions.usb({data: 'r'});
+			this.setState({ 
+				open: true
+            });
+        })
 
         return(
             <div>

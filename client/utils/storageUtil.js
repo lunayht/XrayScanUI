@@ -16,4 +16,3 @@ export let getLocalStorage = (key) => {
 };
 
 export let clearLocalStorage = (key) => localStorage.removeItem(key);
-

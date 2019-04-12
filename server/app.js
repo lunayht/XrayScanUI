@@ -8,6 +8,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack/webpack.config.dev';
+import { onGeneratedData, getDetectionData, deleteEntry } from '../client/components/01_Main/alert/function';
 
 if (process.env.NODE_ENV === 'development') {
     console.log('App running in development mode!')
@@ -29,16 +30,23 @@ app.use(errorHandler.notFoundErrorHandler);
 app.use(errorHandler.errorHandler);
 
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var io = require('socket.io')(http, { wsEngine: 'ws' });
 
 io.on('connection', function(socket){
-    console.log('A user connected');
-    socket.on('disconnect', function(){
-        console.log('A user disconnected');
+    // console.log('A user connected');
+    // socket.on('disconnect', function(){
+    //     console.log('A user disconnected');
+    // });
+    socket.on('data', function(data) {
+        onGeneratedData(data);
+        io.emit('ready', getDetectionData());
     });
-    socket.on('data', function(data){
-        console.log(data);
-        io.sockets.emit('data', data)
+    socket.on('delete', function() {
+        var haha = deleteEntry();
+        console.log('reached delete');
+        if (haha) {
+            io.emit('ready', getDetectionData());
+        };
     });
 });
 
