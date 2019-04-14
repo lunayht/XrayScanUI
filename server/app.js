@@ -42,9 +42,9 @@ io.on('connection', function(socket){
         io.emit('ready', getDetectionData());
     });
     socket.on('delete', function() {
-        var haha = deleteEntry();
+        var dlt = deleteEntry();
         console.log('reached delete');
-        if (haha) {
+        if (dlt) {
             io.emit('ready', getDetectionData());
         };
     });
