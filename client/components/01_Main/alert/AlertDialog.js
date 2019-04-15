@@ -41,9 +41,7 @@ class AlertDialog extends React.Component {
     handleResume() {
 		socket.emit('delete');
 		this.props.onClose();
-		// this.props.actions.usb({data: 's'});
-		// const socket = io.connect(this.state.endpoint);
-		
+		this.props.actions.usb({data: 's'});
 	}
 	
 	handleLogThreat() {
@@ -54,6 +52,8 @@ class AlertDialog extends React.Component {
 		const { classes, onClose, ... other } = this.props;
 		
 		socket.on('ready', (detectedObject) => {
+			// console.log('alert get ready');
+			socket.removeListener('ready');
 			this.setState({ 
 				weapon: detectedObject.weapon,
 				img: detectedObject.img,

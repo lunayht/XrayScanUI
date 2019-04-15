@@ -40,12 +40,17 @@ io.on('connection', function(socket){
     socket.on('data', function(data) {
         onGeneratedData(data);
         io.emit('ready', getDetectionData());
+        io.emit('open');
     });
     socket.on('delete', function() {
         var dlt = deleteEntry();
-        console.log('reached delete');
+        // console.log('reached delete');
         if (dlt) {
+            // console.log('Array not empty');
+            io.emit('open');
             io.emit('ready', getDetectionData());
+        } else {
+            console.log('Array Empty');
         };
     });
 });

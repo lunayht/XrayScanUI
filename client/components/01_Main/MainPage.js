@@ -40,9 +40,10 @@ class MainPage extends React.Component {
             float: 'left',
         };
 
-        socket.on('ready', () => {
-            console.log('data');
-			// this.props.actions.usb({data: 'r'});
+        socket.on('open', () => {
+            // console.log('main page get ready');
+            socket.removeListener('open');
+			this.props.actions.usb({data: 'r'});
 			this.setState({ 
 				open: true
             });
