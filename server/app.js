@@ -44,6 +44,7 @@ io.on('connection', function(socket){
     });
     socket.on('delete', function() {
         var dlt = deleteEntry();
+        io.emit('response', 'Machine Resume');
         // console.log('reached delete');
         if (dlt) {
             // console.log('Array not empty');
