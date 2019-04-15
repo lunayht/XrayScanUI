@@ -15,7 +15,7 @@ export let getDetectionData = () => {
 
 export let deleteEntry = () => {
     jsonData.detection.shift();
-    console.log(jsonData.detection);
+    console.log(jsonData.detection.length);
     if (jsonData.detection.length == 0) {
         return false
     }

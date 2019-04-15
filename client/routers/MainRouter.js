@@ -9,8 +9,8 @@ const MainRouter = () => (
     <Fragment>
         <Switch>
             <Route exact path="/" component={LoginPage} />
-            {/* <Authentication path="/main" component={MainPage} /> */}
-            <Route exact path="/main" component={MainPage} />
+            <Authentication path="/main" component={MainPage} />
+            {/* <Route exact path="/main" component={MainPage} /> */}
             {/* <Route path="/test" component={Temp} /> */}
         </Switch>
     </Fragment>

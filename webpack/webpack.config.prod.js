@@ -1,7 +1,7 @@
 'use strict'; // cannot use undeclared variables 
 const path = require('path');
 const webpack = require('webpack');
-const env = process.env.NODE_ENV;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /*
  * process.cwd() is used to determine the correct base directory.
@@ -13,10 +13,10 @@ const config = {
     context: path.resolve(CURRENT_WORKING_DIR, 'client'),
     entry: {
         app: [
-            './main.js', // entry point 
+            './main.js' //entry point of project
         ]
     },
-    mode: env,
+    mode: 'production',
     module: {
         rules: [
             { //To transform all ES6 and JSX syntax
@@ -29,6 +29,10 @@ const config = {
                         '@babel/preset-env', 
                         '@babel/preset-react'
                     ],
+                    cacheDirectory: true,
+                    // babel-loader enables cahing results 
+                    // in ./node_modules/.cache/babel-loader/
+                    // for faster rebuilds
                     plugins: [
                         '@babel/plugin-proposal-function-bind',
                         '@babel/plugin-proposal-class-properties'
@@ -37,10 +41,8 @@ const config = {
             }, {
                 test: /\.(png|jpg|gif)$/,
                 use: [
-                    {
-                        loader: 'file-loader',
-                        options: {}
-                    }
+                    'file-loader?name=[name].[ext]&publicPath=/&outputPath=images/',
+                    'image-webpack-loader'
                 ]
             }
         ]
@@ -50,6 +52,11 @@ const config = {
         filename: 'client.bundle.js',
         publicPath: '/dist/'
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+          template: '../public/index.html'
+        })
+    ],
 };
 
 module.exports = config;

@@ -158,7 +158,8 @@ const styles = {
         maxHeight: 400,
         maxWidth: 400,
         height: 'auto',
-        width: 'auto'
+        width: 'auto',
+        border: '#FF0000 4px solid'
     }
 }
 

@@ -8,7 +8,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack/webpack.config.dev';
-import { onGeneratedData, getDetectionData, deleteEntry } from '../client/components/01_Main/alert/function';
+import { onGeneratedData, getDetectionData, deleteEntry } from './config/socketio';
 
 if (process.env.NODE_ENV === 'development') {
     console.log('App running in development mode!')
@@ -22,7 +22,7 @@ app.use('/', routes);
 
 // Landing page
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+    res.sendFile(path.join(__dirname, '../dist/client.bundle.js'));
 });
 
 // Error Handler
