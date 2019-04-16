@@ -5,6 +5,7 @@ import { Dialog, DialogTitle, DialogActions, withStyles, Button } from '@materia
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux';
 import * as authAction from '../../../actions/authAction';
+import { getLocalStorage } from '../../../utils/storageUtil';
 
 const style = {
     root: styles.up_root,
@@ -44,7 +45,7 @@ class UserProfile extends React.Component {
             <div className={classes.root}>
                 <Button className={classes.btn} fullWidth onClick={this.handleOpen}>
                     <img src={User} className={classes.user_profile} />
-                    <p className={classes.text}>User</p>
+                    <p className={classes.text}>{getLocalStorage('username')}</p>
                 </Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}>
                     <DialogTitle>Do you want to log out?</DialogTitle>

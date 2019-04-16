@@ -22,7 +22,7 @@ class Stream extends React.Component {
                     {/* <source src={'http://localhost:8080/video.ogg'} /> */}
                     {/* This browser does not support the video tag. */}
                 {/* </video> */}
-                <video controls="" autoplay="" name="media" muted>
+                <video className={classes.video} controls="" autoplay="" name="media" muted>
                 <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4"/>
                 </video>
                 <ZoomPad />

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Weapon from '../../../../public/ammunition.png';
 import styles from '../../../styles/styles';
 import { Dialog, DialogActions, withStyles, Button, DialogContent, Typography } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/WarningRounded';
@@ -22,30 +21,74 @@ const style = {
 	imgstyle: styles.imgstyle
 }
 
-let socket = io.connect("http://10.0.0.215:9000");
+let socket = io.connect("http://192.168.1.7:9000");
 
 class AlertDialog extends React.Component {
 
 	constructor() {
 		super();
 		this.state = {
-			endpoint: "http://10.0.0.215:9000",
 			weapon: '',
 			img: '',
 			percentage: '',
+			doneSave: ''
 		};
 		this.handleResume = this.handleResume.bind(this);
 		this.handleLogThreat = this.handleLogThreat.bind(this);
+		this.handleKeyPress = this.handleKeyPress.bind(this);
+	}
+
+	componentDidMount() {
+		document.addEventListener('keydown', this.handleKeyPress);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('keydown', this.handleKeyPress);
 	}
 
     handleResume() {
+		this.setState({
+			weapon: '',
+			img: '',
+			percentage: '',
+			doneSave: ''
+		});
 		socket.emit('delete');
+		socket.emit('response', 'Machine Resume');
 		this.props.onClose();
-		this.props.actions.usb({data: 's'});
+		// this.props.actions.usb({data: 's'});
 	}
 	
 	handleLogThreat() {
-		alert('Log Threat');
+		this.props.actions.log(this.state).then(data => {
+			if (data.data.save) {
+				this.setState({
+					doneSave: 'Record has been successfully saved in database!'
+				})
+			}
+		});
+	}
+
+	reverse() {
+		this.props.actions.usb({data: 'q'});
+	}
+
+	stop() {
+		this.props.actions.usb({data: 'r'});
+	}
+
+	forward() {
+		this.props.actions.usb({data: 's'});
+	}
+
+	handleKeyPress(e) {
+		if (e.keyCode === 81) {
+			this.reverse();
+		} else if (e.keyCode === 82) {
+			this.stop();
+		} else if (e.keyCode === 83) {
+			this.forward();
+		}
 	}
 
     render() {
@@ -81,9 +124,12 @@ class AlertDialog extends React.Component {
 								{this.state.weapon}
 							</Typography>
 							<Typography className={classes.weapontitle} variant="h6" >
-								{this.state.percentage}
+								{`${this.state.percentage}%`}
 							</Typography>
 						</div>
+						<Typography variant="subtitle1">
+							{this.state.doneSave}
+						</Typography>
 					</DialogContent>
                     <DialogActions className={classes.action}>
                         <Button className={classes.alertbtn} size="large" color="secondary" onClick={this.handleLogThreat}>LOG THREAT</Button>

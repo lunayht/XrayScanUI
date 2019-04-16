@@ -22,7 +22,7 @@ app.use('/', routes);
 
 // Landing page
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../dist/client.bundle.js'));
+    res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 // Error Handler

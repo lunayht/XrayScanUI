@@ -9,6 +9,7 @@ export function login({userid, password}) {
         axios.post('auth/login', {userid, password})
         .then((response) => {
             dispatch(loginSuccess(response.data.token));
+            setLocalStorage('username', response.data.username);
             setLocalStorage('token', response.data.token);
             history.push('/main');
         })

@@ -4,12 +4,12 @@ var jsonData = {
 
 export let onGeneratedData = (data) => {
     jsonData.detection.push(data);
-    console.log(jsonData.detection);
+    // console.log(jsonData.detection);
 }
 
 export let getDetectionData = () => {
     var object = jsonData.detection[0]
-    console.log(object);
+    // console.log(object);
     return object
 }
 
