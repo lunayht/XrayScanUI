@@ -117,7 +117,7 @@ class AlertDialog extends React.Component {
 						<img className={classes.imgstyle} src={`data:image/jpg;base64, ${this.state.img}`} alt="Red dot" />
 						{/* <img src={Weapon} /> */}
 						<Typography variant="h6">
-							Possible threat identified! 
+							Possible threat identified
 						</Typography>
 						<div className={classes.alertdiv}>
 							<Typography className={classes.weapontitle} variant="h6">

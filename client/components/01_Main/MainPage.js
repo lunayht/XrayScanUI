@@ -41,7 +41,6 @@ class MainPage extends React.Component {
         };
 
         socket.on('open', () => {
-            // console.log('main page get ready');
             socket.removeListener('open');
             this.props.actions.usb({data: 'r'});
 			this.setState({ 
