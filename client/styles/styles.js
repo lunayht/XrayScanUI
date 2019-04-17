@@ -155,8 +155,8 @@ const styles = {
         fontSize: 18
     },
     imgstyle: {
-        maxHeight: 400,
-        maxWidth: 400,
+        maxHeight: 300,
+        maxWidth: 300,
         height: 'auto',
         width: 'auto',
         border: '#FF0000 4px solid'

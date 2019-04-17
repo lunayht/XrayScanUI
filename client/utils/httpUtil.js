@@ -24,3 +24,13 @@ export function save(data) {
             }
         });
 }
+
+export function display() {
+    return axios
+        .post('/log/query', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+}

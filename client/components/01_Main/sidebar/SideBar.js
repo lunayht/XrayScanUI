@@ -1,8 +1,9 @@
 import React from 'react';
-import { Typography, withStyles } from '@material-ui/core';
+import { withStyles } from '@material-ui/core';
 import UserProfile from './UserProfile';
 import Logo from '../../../../public/lta-singapore.jpg';
 import styles from '../../../styles/styles';
+import AlertTab from './AlertTab';
 
 const style = {
     root: styles.sidebar_root,
@@ -20,15 +21,7 @@ class SideBar extends React.Component {
                 <img src={Logo} className={classes.lta_logo} />
                 <UserProfile />
                 <div className={classes.status}>
-                    <Typography variant="h6">
-                        <div>Number of Bags: </div>
-                        <div>None</div>
-                    </Typography>
-                    <br />
-                    <Typography variant="h6">
-                        <div>Current Threats: </div>
-                        <div>None</div>
-                    </Typography>
+                    <AlertTab />
                 </div>
             </div>
         )

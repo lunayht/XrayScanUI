@@ -7,6 +7,7 @@ import io from 'socket.io-client';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as crudAction from '../../../actions/crudAction';
+import { setLocalStorage } from '../../../utils/storageUtil';
 
 const style = {
 	root: styles.up_root,
@@ -36,16 +37,22 @@ class AlertDialog extends React.Component {
 		this.handleResume = this.handleResume.bind(this);
 		this.handleLogThreat = this.handleLogThreat.bind(this);
 		this.handleKeyPress = this.handleKeyPress.bind(this);
+		this.handleListener = this.handleListener.bind(this);
 	}
 
 	componentDidMount() {
 		document.addEventListener('keydown', this.handleKeyPress);
+		window.addEventListener('storage', this.handleListener);
 	}
 
 	componentWillUnmount() {
 		document.removeEventListener('keydown', this.handleKeyPress);
 	}
 
+	handleListener(e) {
+        console.log('Local Storage Changes Has Made')
+	}
+	
     handleResume() {
 		this.setState({
 			weapon: '',
@@ -61,6 +68,7 @@ class AlertDialog extends React.Component {
 	
 	handleLogThreat() {
 		this.props.actions.log(this.state).then(data => {
+			setLocalStorage('weaponid', data.data.data.id);
 			if (data.data.save) {
 				this.setState({
 					doneSave: 'Record has been successfully saved in database!'
