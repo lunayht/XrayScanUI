@@ -100,7 +100,8 @@ const styles = {
         height: 'auto'
     },
     status: {
-        margin: 10
+        margin: 0,
+        position: 'relative'
     },
     controlkey: {
         display: 'flex',
@@ -160,6 +161,27 @@ const styles = {
         height: 'auto',
         width: 'auto',
         border: '#FF0000 4px solid'
+    },
+    alertheader: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        position: 'relative',
+        padding: 0
+    },
+    log_img: {
+        maxHeight: 50,
+        maxWidth: 50,
+        height: 'auto',
+        width: 'auto'
+    },
+    alerttab_div: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    tablewidth: {
+        width: '100%'
     }
 }
 

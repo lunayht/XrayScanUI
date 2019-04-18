@@ -1,5 +1,4 @@
 import * as httpService from '../services/httpService';
-import * as httpUtils from '../utils/httpUtil';
 import * as commonAction from './commonAction';
 
 export function usb(data) {
@@ -22,9 +21,9 @@ export function log(threats) {
     };
 }
 
-export function display() {
+export function displayquery(id) {
     return function(dispatch) {
-        return httpUtils.display()
+        return httpService.queryid(id)
         .catch((error) => {
             dispatch(commonAction.failure(error))
         });

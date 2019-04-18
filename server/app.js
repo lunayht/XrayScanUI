@@ -45,7 +45,6 @@ io.on('connection', function(socket){
     socket.on('delete', function() {
         var dlt = deleteEntry();
         io.emit('response', 'Machine Resume');
-        // console.log('reached delete');
         if (dlt) {
             // console.log('Array not empty');
             io.emit('open');
@@ -53,6 +52,9 @@ io.on('connection', function(socket){
         } else {
             console.log('Array Empty');
         };
+    });
+    socket.on('weapondata', function(data) {
+        io.emit('log', data)
     });
 });
 

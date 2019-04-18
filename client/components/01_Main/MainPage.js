@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import * as crudAction from '../../actions/crudAction';
 import io from 'socket.io-client';
 
-let socket = io.connect("http://192.168.1.7:9000");
+let socket = io.connect("http://10.0.0.215:9000");
 
 class MainPage extends React.Component {
     constructor(props) {

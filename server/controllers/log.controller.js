@@ -17,8 +17,10 @@ export function save(req, res) {
 };
 
 export function queryData(req, res) {
+    // console.log(req.body.data.data.id);
+    let id = req.body.data.data.id;
     Threats.query({
-        where: {weaponid: '20'}
+        where: {weaponid: id}
     }).fetch()
     .then(threats => res.send({
         query: true,

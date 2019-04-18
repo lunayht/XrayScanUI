@@ -7,7 +7,6 @@ import io from 'socket.io-client';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as crudAction from '../../../actions/crudAction';
-import { setLocalStorage } from '../../../utils/storageUtil';
 
 const style = {
 	root: styles.up_root,
@@ -22,7 +21,7 @@ const style = {
 	imgstyle: styles.imgstyle
 }
 
-let socket = io.connect("http://192.168.1.7:9000");
+let socket = io.connect("http://10.0.0.215:9000");
 
 class AlertDialog extends React.Component {
 
@@ -37,20 +36,14 @@ class AlertDialog extends React.Component {
 		this.handleResume = this.handleResume.bind(this);
 		this.handleLogThreat = this.handleLogThreat.bind(this);
 		this.handleKeyPress = this.handleKeyPress.bind(this);
-		this.handleListener = this.handleListener.bind(this);
 	}
 
 	componentDidMount() {
 		document.addEventListener('keydown', this.handleKeyPress);
-		window.addEventListener('storage', this.handleListener);
 	}
 
 	componentWillUnmount() {
 		document.removeEventListener('keydown', this.handleKeyPress);
-	}
-
-	handleListener(e) {
-        console.log('Local Storage Changes Has Made')
 	}
 	
     handleResume() {
@@ -61,18 +54,19 @@ class AlertDialog extends React.Component {
 			doneSave: ''
 		});
 		socket.emit('delete');
-		socket.emit('response', 'Machine Resume');
 		this.props.onClose();
 		// this.props.actions.usb({data: 's'});
 	}
 	
 	handleLogThreat() {
 		this.props.actions.log(this.state).then(data => {
-			setLocalStorage('weaponid', data.data.data.id);
+			this.props.actions.displayquery(data).then(data => {
+				socket.emit('weapondata', data.data.data);
+			});
 			if (data.data.save) {
 				this.setState({
 					doneSave: 'Record has been successfully saved in database!'
-				})
+				});
 			}
 		});
 	}
@@ -103,7 +97,6 @@ class AlertDialog extends React.Component {
 		const { classes, onClose, ... other } = this.props;
 		
 		socket.on('ready', (detectedObject) => {
-			// console.log('alert get ready');
 			socket.removeListener('ready');
 			this.setState({ 
 				weapon: detectedObject.weapon,

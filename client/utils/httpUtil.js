@@ -25,9 +25,9 @@ export function save(data) {
         });
 }
 
-export function display() {
+export function query(data) {
     return axios
-        .post('/log/query', {
+        .post('/log/query', data, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
