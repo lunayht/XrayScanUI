@@ -10,7 +10,7 @@ const style = {
     tablewidth: styles.tablewidth
 }
 
-let socket = io.connect("http://10.0.0.215:9000");
+let socket = io.connect("http://localhost:9000");
 
 let rows = [];
 let unique = [];
@@ -20,7 +20,10 @@ class AlertTab extends React.Component {
     render() {
 
         const { classes } = this.props;
-
+        const tableheader = {
+            padding: '4px',
+            fontSize: 'medium',
+        };
         socket.on('log', (logdata) => {
             socket.removeListener('log')
             rows.push(logdata);
@@ -31,14 +34,14 @@ class AlertTab extends React.Component {
         return(
             <div className={classes.alertheader}>
                 <Typography variant="title">
-                    Threats Detected:
+                    Threats Detected
                 </Typography>
                 <Table className={classes.tablewidth}>
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">Images</TableCell>
-                            <TableCell align="center">Weapons</TableCell>
-                            <TableCell align="center">Percentage</TableCell>
+                            <TableCell style={tableheader} align="center">Images</TableCell>
+                            <TableCell style={tableheader} align="center">Weapons</TableCell>
+                            <TableCell style={tableheader} align="center">Percentage</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

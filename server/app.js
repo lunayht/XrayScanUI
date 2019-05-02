@@ -8,7 +8,6 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack/webpack.config.dev';
-import { onGeneratedData, getDetectionData, deleteEntry } from './config/socketio';
 
 if (process.env.NODE_ENV === 'development') {
     console.log('App running in development mode!')
@@ -29,37 +28,17 @@ app.get('*', (req, res) => {
 app.use(errorHandler.notFoundErrorHandler);
 app.use(errorHandler.errorHandler);
 
-var http = require('http').Server(app);
-var io = require('socket.io')(http, { wsEngine: 'ws' });
+const Server = require('socket.io');
+const io = new Server(9000);
 
-io.on('connection', function(socket){
-    // console.log('A user connected');
-    // socket.on('disconnect', function(){
-    //     console.log('A user disconnected');
-    // });
+io.on('connect', function(socket) {
     socket.on('data', function(data) {
-        onGeneratedData(data);
-        io.emit('ready', getDetectionData());
-        io.emit('open');
-    });
-    socket.on('delete', function() {
-        var dlt = deleteEntry();
-        io.emit('response', 'Machine Resume');
-        if (dlt) {
-            // console.log('Array not empty');
-            io.emit('open');
-            io.emit('ready', getDetectionData());
-        } else {
-            console.log('Array Empty');
-        };
-    });
-    socket.on('weapondata', function(data) {
-        io.emit('log', data)
-    });
-});
+        io.emit('dataAA', data)
+    })
+})
 
-http.listen(app.get('port'), app.get('host'), () => {
-    console.log(`Server running at http://${app.get('host')}:${app.get('port')}`);
-});
+app.listen(app.get('port'), app.get('host'), () => {
+    console.log('server running');
+})
 
-export default http;
+export default app;

@@ -8,6 +8,7 @@ import * as crudAction from '../../../actions/crudAction';
 const style = {
     root: styles.root,
     resetbtn : styles.resetbtn,
+    zoombutton : styles.zoombutton
 };
 
 class ZoomPad extends React.Component {
@@ -95,17 +96,17 @@ class ZoomPad extends React.Component {
         return(
             <div>
                 <div className={classes.root}>
-                    <ButtonBase disableRipple onClick={this.handleClick7} />
-                    <ButtonBase disableRipple onClick={this.handleClick8} />
-                    <ButtonBase disableRipple onClick={this.handleClick9} />
-                    <ButtonBase disableRipple onClick={this.handleClick4} />
-                    <ButtonBase disableRipple onClick={this.handleClick5} />
-                    <ButtonBase disableRipple onClick={this.handleClick6} />
-                    <ButtonBase disableRipple onClick={this.handleClick1} />
-                    <ButtonBase disableRipple onClick={this.handleClick2} />
-                    <ButtonBase disableRipple onClick={this.handleClick3} />
+                    <ButtonBase  onClick={this.handleClick7} />
+                    <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick8} />
+                    <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick9} />
+                    <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick4} />
+                    <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick5} />
+                    <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick6} />
+                    <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick1} />
+                    <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick2} />
+                    <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick3} />
                 </div>
-                <Button size="large" variant="contained" className={classes.resetbtn} onClick={this.reset}>RESET</Button>
+                <Button size="large" variant="contained" className={classes.resetbtn} onClick={this.reset}>RESET ZOOM</Button>
             </div>
         )
     }

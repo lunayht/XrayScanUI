@@ -3,25 +3,23 @@ import PropTypes from 'prop-types';
 import styles from '../../../styles/styles';
 import { Dialog, DialogActions, withStyles, Button, DialogContent, Typography } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/WarningRounded';
-import io from 'socket.io-client';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as crudAction from '../../../actions/crudAction';
 
 const style = {
-	root: styles.up_root,
+	root: styles.list_root,
 	warningicon : styles.warningicon,
 	alert: styles.alert,
 	alerttitle: styles.alerttitle,
 	alertcontent: styles.alertcontent,
+	contentdiv: styles.contentdiv,
 	alertdiv: styles.alertdiv,
 	weapontitle: styles.weapontitle,
 	action: styles.action,
 	alertbtn: styles.alertbtn,
 	imgstyle: styles.imgstyle
 }
-
-let socket = io.connect("http://10.0.0.215:9000");
 
 class AlertDialog extends React.Component {
 
@@ -45,6 +43,17 @@ class AlertDialog extends React.Component {
 	componentWillUnmount() {
 		document.removeEventListener('keydown', this.handleKeyPress);
 	}
+
+	// componentDidUpdate(prevProps) {
+	// 	if ((this.props.state.mach.machinestatus !== prevProps.state.mach.machinestatus)) {
+    //         console.log('condition2')
+    //         console.log(this.props.state.mach)
+    //     }
+	// }
+	
+	// componentWillUpdate() {
+	// 	console.log(this.props.state.mach.data);
+	// }
 	
     handleResume() {
 		this.setState({
@@ -53,22 +62,15 @@ class AlertDialog extends React.Component {
 			percentage: '',
 			doneSave: ''
 		});
-		socket.emit('delete');
 		this.props.onClose();
 		// this.props.actions.usb({data: 's'});
 	}
 	
 	handleLogThreat() {
-		this.props.actions.log(this.state).then(data => {
-			this.props.actions.displayquery(data).then(data => {
-				socket.emit('weapondata', data.data.data);
-			});
-			if (data.data.save) {
-				this.setState({
-					doneSave: 'Record has been successfully saved in database!'
-				});
-			}
-		});
+		console.log(this.props.state.mach);
+		// this.props.actions.log(this.state).then(data => {
+		// 	console.log(data)	
+		// });
 	}
 
 	reverse() {
@@ -95,15 +97,6 @@ class AlertDialog extends React.Component {
 
     render() {
 		const { classes, onClose, ... other } = this.props;
-		
-		socket.on('ready', (detectedObject) => {
-			socket.removeListener('ready');
-			this.setState({ 
-				weapon: detectedObject.weapon,
-				img: detectedObject.img,
-				percentage: detectedObject.percentage
-			});
-		});
 
         return(
             <div className={classes.root}>
@@ -115,17 +108,19 @@ class AlertDialog extends React.Component {
 						</Typography>
 					</div>
                     <DialogContent className={classes.alertcontent}>
-						<img className={classes.imgstyle} src={`data:image/jpg;base64, ${this.state.img}`} alt="Red dot" />
 						<Typography variant="h6">
 							Possible threat identified
 						</Typography>
-						<div className={classes.alertdiv}>
-							<Typography className={classes.weapontitle} variant="h6">
-								{this.state.weapon}
-							</Typography>
-							<Typography className={classes.weapontitle} variant="h6" >
-								{`${this.state.percentage}%`}
-							</Typography>
+						{/* <img className={classes.imgstyle} src={`data:image/jpg;base64, ${this.state.img}`} alt="Threat" /> */}
+						<div className={classes.contentdiv}>
+							<div className={classes.alertdiv}>
+								<Typography className={classes.weapontitle} variant="h6">
+									{this.state.weapon}
+								</Typography>
+								{/* <Typography className={classes.weapontitle} variant="h6" >
+									{`${this.state.percentage}%`}
+								</Typography> */}
+							</div>
 						</div>
 						<Typography variant="subtitle1">
 							{this.state.doneSave}
@@ -133,7 +128,7 @@ class AlertDialog extends React.Component {
 					</DialogContent>
                     <DialogActions className={classes.action}>
                         <Button className={classes.alertbtn} size="large" color="secondary" onClick={this.handleLogThreat}>LOG THREAT</Button>
-                        <Button className={classes.alertbtn} size="large" color="primary" onClick={this.handleResume}>RESUME MACHINE</Button>
+                        <Button className={classes.alertbtn} size="large" color="primary" onClick={this.handleResume}>CLOSE</Button>
                     </DialogActions>
                 </Dialog>
             </div>
@@ -146,8 +141,12 @@ AlertDialog.propTypes = {
 	onClose: PropTypes.func
 };
 
+function mapStateToProps(state) {
+    return { state }
+}
+
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, crudAction), dispatch)
 });
 
-export default connect(null, mapDispatchToProps)(withStyles(style)(AlertDialog));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(style)(AlertDialog));

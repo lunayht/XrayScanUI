@@ -4,3 +4,8 @@ export const FAILURE = 'FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+
+//Machine Halted
+export const MACHINESTOP = 'MACHINESTOP';
+export const MACHINERESUME = 'MACHINERESUME';
+export const LOADDATA = 'LOADDATA';

@@ -2,7 +2,10 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
     LOGOUT_SUCCESS,
-    FAILURE 
+    FAILURE,
+    MACHINERESUME,
+    MACHINESTOP,
+    LOADDATA
 } from '../constants/actionType';
 
 export function failure(error) {
@@ -18,6 +21,25 @@ export function loginSuccess(data) {
         data
     };
 };
+
+export function machineHalted() {
+    return {
+        type: MACHINESTOP,
+    };
+};
+
+export function loadData(data) {
+    return {
+        type: LOADDATA,
+        data
+    }
+}
+
+export function machineResume() {
+    return {
+        type: MACHINERESUME,
+    }
+}
 
 export function loginFailure(error) {
     return {

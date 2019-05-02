@@ -44,14 +44,19 @@ const styles = {
     },
     container: {
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        // marginLeft: '-140px',
+        // border: 'white',
+        // borderStyle: 'solid',
+        // borderWidth: '2px',
     },
     video: {
         width: '100%',
         height: 'auto',
         zIndex: 1,
-        marginBottom: '-60px',
-        marginTop: '-60px'
+        marginBottom: '-40px',
+        left: '-140px'
+        // marginTop: '-60px'
     },
     root: {
         position: 'absolute',
@@ -64,21 +69,53 @@ const styles = {
         width: '100%',
         height: '100%'
     },
+    bluebackground:{
+        backgroundColor: '#2196f3',
+        '&:hover': {
+            backgroundColor: '#40a8f9 !important',
+        }
+    },
+    greenbackground:{
+        backgroundColor: '#6be226',
+        '&:hover': {
+            backgroundColor: '#91eb5c !important',
+        }
+    },
+    redbackground:{
+        backgroundColor: '#eb5c5c',
+        '&:hover': {
+            backgroundColor: '#d67777 !important',
+        }
+    },
     resetbtn: {
         zIndex: 3,
         position: 'absolute',
         right: 0,
-        bottom: 4,
-        width: 80,
-        height: 40
+        bottom: 0,
+        width: 140,
+        height: 40,
+        margin: '10px'
     },
     up_root: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         width: '100%',
+        height: '14vh',
+        boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.15), 0 6px 20px 0 rgba(0, 0, 0, 0.13)",
+        borderRadius: '8px',
+        background: 'lightgray'+'20',
+        marginTop:'5px',
+        marginBottom:'14px',
+    },
+    list_root:{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%',
         height: '9vh'
     },
+
     up_img: {
         height: '4vw',
         width: '4vw',
@@ -104,12 +141,13 @@ const styles = {
         position: 'relative'
     },
     controlkey: {
+        width: '70%',
         display: 'flex',
         flexDirection: 'row',
     },
     control_btn: {
-        height: 95,
-        width: 95,
+        width: '100%',
+        margin: '5px',
     },
     control_iconSize: {
         fontSize: 60
@@ -137,11 +175,17 @@ const styles = {
         justifyContent: 'center',
         padding: 20
     },
+    contentdiv: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
     alertdiv: {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        textAlign: 'center'
     },
     weapontitle: {
         fontWeight: 'bold',
@@ -181,7 +225,16 @@ const styles = {
         alignItems: 'center'
     },
     tablewidth: {
-        width: '100%'
+        width: '100%',
+        text: '',
+    },
+    zoombutton:{
+        backgroundColor:"#dddddd",
+        opacity: 0,
+        '&:hover': {
+            opacity: 0.1,
+        }
+
     }
 }
 
