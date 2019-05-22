@@ -1,35 +1,38 @@
 import React from 'react';
 import { Typography, withStyles, Table, TableRow, TableCell, TableBody, TableHead } from '@material-ui/core';
-import io from 'socket.io-client';
 import styles from '../../../styles/styles';
+import { connect } from 'react-redux';
 
 const style = {
     alertheader: styles.alertheader,
     log_img: styles.log_img,
-    alerttab_div: styles.alerttab_div,
     tablewidth: styles.tablewidth
 }
 
-let socket = io.connect("http://localhost:9000");
-
-let rows = [];
-let unique = [];
-
-class AlertTab extends React.Component { 
+class LogTab extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            unique: []
+        }
+    } 
+    
+    componentDidMount() {
+        if (this.props.data.savedata.length > 0) {
+            this.setState({
+                unique: this.props.data.savedata
+            })
+        }
+	}
 
     render() {
 
         const { classes } = this.props;
+
         const tableheader = {
             padding: '4px',
             fontSize: 'medium',
         };
-        socket.on('log', (logdata) => {
-            socket.removeListener('log')
-            rows.push(logdata);
-            unique = [...new Set(rows)];
-            console.log(unique);
-        });
 
         return(
             <div className={classes.alertheader}>
@@ -45,11 +48,11 @@ class AlertTab extends React.Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {unique.map(unique => (
-                            <TableRow key={unique.weaponid}>
+                        {this.state.unique.map(unique => (
+                            <TableRow key={unique.img}>
                                 <TableCell align="center">
                                     {<img className={classes.log_img} 
-                                    src={`data:image/jpg;base64, ${unique.img}`} alt="Red dot" />}
+                                    src={`data:image/jpg;base64, ${unique.img}`} alt="Threat img" />}
                                 </TableCell>
                                 <TableCell align="left">{unique.weapon}</TableCell>
                                 <TableCell align="left">{unique.percentage}</TableCell>
@@ -62,4 +65,9 @@ class AlertTab extends React.Component {
     }
 }
 
-export default (withStyles(style)(AlertTab));
+function mapStateToProps(state) {
+    const data = state.mach
+    return { data }
+}
+
+export default connect(mapStateToProps)(withStyles(style)(LogTab));

@@ -9,3 +9,5 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const MACHINESTOP = 'MACHINESTOP';
 export const MACHINERESUME = 'MACHINERESUME';
 export const LOADDATA = 'LOADDATA';
+export const SAVEDATA = 'SAVEDATA';
+export const RESET = 'RESET';

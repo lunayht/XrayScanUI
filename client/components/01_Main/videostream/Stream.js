@@ -2,13 +2,38 @@ import React from 'react';
 import { withStyles } from '@material-ui/core';
 import styles from '../../../styles/styles';
 import ZoomPad from './zoomPad';
+import videojs from 'video.js/dist/video';
 
 const style = {
     container: styles.container,
     video: styles.video,
 };
 
+const videoJsOptions = {
+    autoplay: true,
+    controls: true,
+    sources: [{
+      src: '/path/to/video.mp4',
+      type: 'video/mp4'
+    }]
+  }  
+
 class Stream extends React.Component {
+
+    // componentDidMount() {
+    //     this.player = videojs('stream', options);
+    //     this.player.src({
+    //         src: 'rtmp://xxx/live/test',
+    //         type: 'rtmp/flv'
+    //     });
+    //     this.player.load();
+    // }
+
+    // componentWillUnmount() {
+    //     if (this.player) {
+    //         this.player.dispose()
+    //     }
+    // }
 
     render() {
         const { classes } = this.props;
@@ -22,8 +47,10 @@ class Stream extends React.Component {
                     {/* <source src={'http://localhost:8080/video.ogg'} /> */}
                     {/* This browser does not support the video tag. */}
                 {/* </video> */}
-                <video className={classes.video} controls="" autoPlay="" name="media" muted>
-                    <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4"/>
+                <video className={classes.video} autoPlay name="media" muted>
+                    {/* <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4"/> */}
+                    <source src="/video.mp4" type="video/mp4" />
+
                 </video>
                 <ZoomPad />
             </div>

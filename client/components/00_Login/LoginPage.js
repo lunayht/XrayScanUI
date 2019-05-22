@@ -7,7 +7,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as authAction from '../../actions/authAction';
 import CustomizedSnackBar from './CustomizedSnackBar';
-import store from './../../reducers/store/store';
 
 const style = {
     container: styles.login_container,

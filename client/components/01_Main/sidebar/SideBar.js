@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core';
 import UserProfile from './UserProfile';
 import Logo from '../../../../public/lta-singapore.jpg';
 import styles from '../../../styles/styles';
-// import AlertTab from './AlertTab';
+import LogTab from './LogTab';
 
 const style = {
     root: styles.sidebar_root,
@@ -21,7 +21,7 @@ class SideBar extends React.Component {
                 <img src={Logo} className={classes.lta_logo} />
                 <UserProfile />
                 <div className={classes.status}>
-                    {/* <AlertTab /> */}
+                    <LogTab />
                 </div>
             </div>
         )

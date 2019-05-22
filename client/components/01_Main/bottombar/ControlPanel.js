@@ -1,5 +1,5 @@
 import React from 'react';
-import { Zoom, Tooltip, Button, MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core';
+import { Zoom, Tooltip, Button, createMuiTheme, withStyles } from '@material-ui/core';
 import Forward from '@material-ui/icons/FastForwardRounded';
 import Reverse from '@material-ui/icons/FastRewindRounded';
 import classNames from 'classnames';
@@ -41,27 +41,28 @@ class ControlPanel extends React.Component {
     };
 
     reverse() {
-        this.props.actions.usb({data: 'q'});
+        crudAction.usb({data: 'q'});
     };
 
     stop() {
-        this.props.actions.usb({data: 'r'});
+        crudAction.usb({data: 'r'});
     };
 
     forward() {
-        this.props.actions.usb({data: 's'});
+        crudAction.usb({data: 's'});
+        // socket.emit('close', 'close');
     };
 
     BW() {
-        this.props.actions.usb({data: 'n'});
+        crudAction.usb({data: 'n'});
     };
 
     CC() {
-        this.props.actions.usb({data: 'k'});
+        crudAction.usb({data: 'k'});
     };
 
     HP() {
-        this.props.actions.usb({data: 'p'});
+        crudAction.usb({data: 'p'});
     };
 
     handleKeyPress(e) {
@@ -85,6 +86,14 @@ class ControlPanel extends React.Component {
             this.HP();
         }
     }
+
+    // componentDidUpdate(prevProps) {
+    //     if ((this.props.data.machinestatus === 'close') && 
+    //     ((prevProps.data.machinestatus === 'stop')||(prevProps.data.machinestatus === 'saved'))) {
+    //         console.log(this.props.data)
+    //         console.log(prevProps.data)
+    //     }
+    // }
 
     render() {
 
@@ -139,8 +148,13 @@ class ControlPanel extends React.Component {
     }
 };
 
+function mapStateToProps(state) {
+	const data = state.mach
+    return { data }
+}
+
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, crudAction), dispatch)
 });
 
-export default connect(null, mapDispatchToProps)(withStyles(style)(ControlPanel));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(style)(ControlPanel));

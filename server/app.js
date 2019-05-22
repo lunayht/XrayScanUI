@@ -28,17 +28,46 @@ app.get('*', (req, res) => {
 app.use(errorHandler.notFoundErrorHandler);
 app.use(errorHandler.errorHandler);
 
-const Server = require('socket.io');
-const io = new Server(9000);
+// const Server = require('socket.io');
+// const io = new Server(9000);
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 io.on('connect', function(socket) {
+    console.log(socket.id + ' CONNECTED');
+    // console.log(socket.id);
     socket.on('data', function(data) {
-        io.emit('dataAA', data)
+    	// console.log('weapon detected');
+        var dataArr = [];
+        // console.log(data.weapon)
+        for (var i in data) {
+            this[i] = data[i].split('._____.')
+        }
+        for (var j = 0; j < this.weapon.length; j++) {
+            dataArr[j] = {
+                'weapon': this.weapon[j],
+                'percentage': this.percentage[j],
+                'img': this.img[j]
+            }
+        }
+        io.emit('dataAA', dataArr);
+    })
+    socket.on('close', function(data) {
+        // console.log(data)
+    	io.emit('response', data);
+    })
+    socket.on('passcmd', function(data) {
+        console.log(data)
+        io.emit('cmd', data)
+    })
+    socket.on('disconnect', function() {
+    	console.log(socket.id + ' DISCONNECT')
     })
 })
 
-app.listen(app.get('port'), app.get('host'), () => {
-    console.log('server running');
-})
+// app.listen(app.get('port'), app.get('host'), () => {
+//     console.log('server running');
+// })
+http.listen(app.get('port'), app.get('host'), () => { console.log('SERVER RUNNING AT ' + process.env.APP_HOST + ':' + process.env.APP_PORT) })
 
 export default app;

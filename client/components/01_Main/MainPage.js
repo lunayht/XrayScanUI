@@ -8,82 +8,118 @@ import { connect } from 'react-redux';
 import * as commonAction from '../../actions/commonAction';
 import * as crudAction from '../../actions/crudAction';
 import io from 'socket.io-client';
+import Left from '@material-ui/icons/Menu';
+import { Button, Drawer } from '@material-ui/core';
+import { getLocalStorage, setLocalStorage } from '../../utils/storageUtil';
 
-let socket = io.connect("http://localhost:9000");
+let socket = io.connect("http://192.168.1.14:7000");
+let now, stop;
 
 class MainPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             open: false,
-            detection: [],
-            id: 0
+            drawer: false
         };
         this.handleClose = this.handleClose.bind(this);
-        this.open = this.open.bind(this);
+        this.load = this.load.bind(this);
+        this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
+        this.handleDrawerClose = this.handleDrawerClose.bind(this)
     };
 
     handleClose() {
-        this.props.machine.machineResume();
+        stop = new Date();
+        var diff = stop - now;
+        var acc = getLocalStorage('stopTime');
+        var answer = acc + diff;
+        setLocalStorage('stopTime', answer);
+        this.props.machine.machineResume([]);
         this.setState({ 
-            open: false,
-            detection: []
+            open: false
         });
+        
     };
 
-    open(data) {
-        this.state.detection.push(data);
-        this.props.machine.loadData(this.state.detection);
+    load(data) {
+        this.props.machine.loadData(data);
+    };
+
+    handleDrawerOpen() {
         this.setState({
-            open: this.props.state.mach.open
-        });
+            drawer: true
+        })
     }
+
+    handleDrawerClose() {
+        this.setState({
+            drawer: false
+        })
+    };
 
     componentDidUpdate(prevProps) {
         if ((this.props.state.mach.open !== prevProps.state.mach.open) && (this.props.state.mach.open)) {
-            this.props.machine.machineHalted();
-            this.props.actions.usb({data: 'r'});
-        }
-    }
+        	this.props.machine.machineHalted(this.props.state.mach.displaydata);
+	        this.setState({
+	            open: this.props.state.mach.open
+	        });
+            crudAction.usb({data: 'r'});
+            now = new Date();
+        } 
+    };
 
     componentDidMount() {
-        socket.on('dataAA', this.open);
-    }
+        socket.on('dataAA', this.load);
+    };
 
     componentWillUnmount() {
         socket.off('dataAA')
-        socket.disconnect()
-    }
+    };
 
     render() {
 
         const stream = {
-            width: '75%',
-            float: 'left'
+            width: '100%',
+            overflow: 'hidden',
+            position: 'relative'
         };
 
         const sidebar = {
-            width: '25%',
-            float: 'left'
+            zIndex: 3,
+            position: 'absolute',
+            top: 0,
+            right: 0,
         };
 
         const controlpanel = {
-            width: '75%',
-            float: 'left',
+            width: '100%',
+            position: 'relative'
         };
+
+        const btn = {
+            margin: 10
+        }
 
         return(
             <div>
+                <AlertDialog open={this.state.open} onClose={this.handleClose} />
                 <div style={stream}>
                     <Stream />
                 </div>
-                <div style={sidebar}>
+                {/* <div style={sidebar}>
                     <Sidebar />
-                </div>
+                </div> */}
                 <div style={controlpanel}>
                     <ControlPanel />
                 </div>
-                <AlertDialog open={this.state.open} onClose={this.handleClose} />
+                <div style={sidebar}>
+                    <Button style={btn} onClick={this.handleDrawerOpen}>
+                        <Left />
+                    </Button>
+                    <Drawer anchor="right" open={this.state.drawer} onClose={this.handleDrawerClose}>
+                        <Sidebar />
+                    </Drawer>
+                </div>
             </div>
         )
     }

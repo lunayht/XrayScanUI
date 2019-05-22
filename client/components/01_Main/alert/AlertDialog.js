@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../../styles/styles';
-import { Dialog, DialogActions, withStyles, Button, DialogContent, Typography } from '@material-ui/core';
+import { Dialog, DialogActions, withStyles, Button, DialogContent, Typography, ButtonBase } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/WarningRounded';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as crudAction from '../../../actions/crudAction';
+import * as commonAction from '../../../actions/commonAction';
 
 const style = {
 	root: styles.list_root,
@@ -21,14 +22,32 @@ const style = {
 	imgstyle: styles.imgstyle
 }
 
+
+const Div = ({ source }) => (
+	<div>
+		{/* <ButtonBase> */}
+			<img style={styles.imgstyle} src={`data:image/jpg;base64, ${source.img}`} alt="Threat" />
+		{/* </ButtonBase> */}
+		<div style={styles.contentdiv}>
+			<div style={styles.alertdiv}>
+				<Typography style={styles.weapontitle} variant="h6">
+					{source.weapon}
+				</Typography>
+				<Typography style={styles.weapontitle} variant="h6" >
+					{`${source.percentage}%`}
+				</Typography>
+			</div>
+		</div>
+	</div>
+)
+
+var Arr = [];
+
 class AlertDialog extends React.Component {
 
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
-			weapon: '',
-			img: '',
-			percentage: '',
 			doneSave: ''
 		};
 		this.handleResume = this.handleResume.bind(this);
@@ -44,33 +63,28 @@ class AlertDialog extends React.Component {
 		document.removeEventListener('keydown', this.handleKeyPress);
 	}
 
-	// componentDidUpdate(prevProps) {
-	// 	if ((this.props.state.mach.machinestatus !== prevProps.state.mach.machinestatus)) {
-    //         console.log('condition2')
-    //         console.log(this.props.state.mach)
-    //     }
-	// }
-	
-	// componentWillUpdate() {
-	// 	console.log(this.props.state.mach.data);
-	// }
+	componentDidUpdate(prevProps) {
+		if ((this.props.data.open !== prevProps.data.open) && (this.props.data.open)) {
+			Arr = this.props.data.displaydata
+		}
+	}
 	
     handleResume() {
-		this.setState({
-			weapon: '',
-			img: '',
-			percentage: '',
-			doneSave: ''
-		});
 		this.props.onClose();
-		// this.props.actions.usb({data: 's'});
+		this.setState({
+			doneSave: ''
+		})
 	}
 	
 	handleLogThreat() {
-		console.log(this.props.state.mach);
-		// this.props.actions.log(this.state).then(data => {
-		// 	console.log(data)	
-		// });
+		this.props.actions.log(this.props.data.displaydata).then(data => {
+			if (data.data.save) {
+				this.setState({
+					doneSave: 'Record has been saved in database!'
+				})
+				this.props.machine.saveData(this.props.data.displaydata);
+			}
+		});
 	}
 
 	reverse() {
@@ -96,6 +110,7 @@ class AlertDialog extends React.Component {
 	}
 
     render() {
+
 		const { classes, onClose, ... other } = this.props;
 
         return(
@@ -111,16 +126,10 @@ class AlertDialog extends React.Component {
 						<Typography variant="h6">
 							Possible threat identified
 						</Typography>
-						{/* <img className={classes.imgstyle} src={`data:image/jpg;base64, ${this.state.img}`} alt="Threat" /> */}
-						<div className={classes.contentdiv}>
-							<div className={classes.alertdiv}>
-								<Typography className={classes.weapontitle} variant="h6">
-									{this.state.weapon}
-								</Typography>
-								{/* <Typography className={classes.weapontitle} variant="h6" >
-									{`${this.state.percentage}%`}
-								</Typography> */}
-							</div>
+						<div style={{display: 'flex', flexDirection: 'row', alignItems: 'baseline'}}>
+							{Arr.map(element => (
+								<Div source={element} key={element.img} />
+							))}
 						</div>
 						<Typography variant="subtitle1">
 							{this.state.doneSave}
@@ -142,11 +151,13 @@ AlertDialog.propTypes = {
 };
 
 function mapStateToProps(state) {
-    return { state }
+	const data = state.mach
+    return { data }
 }
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, crudAction), dispatch)
+    actions: bindActionCreators(Object.assign({}, crudAction), dispatch),
+    machine: bindActionCreators(Object.assign({}, commonAction), dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(style)(AlertDialog));

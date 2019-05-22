@@ -8,9 +8,4 @@ logRoutes.route('/')
         logCtrl.save(req, res)
     })
 
-logRoutes.route('/query')
-    .post((req, res) => {
-        logCtrl.queryData(req, res)
-    })
-
 export default logRoutes;

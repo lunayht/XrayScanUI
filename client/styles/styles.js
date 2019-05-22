@@ -43,20 +43,14 @@ const styles = {
         marginBottom: 15
     },
     container: {
-        position: 'relative',
-        overflow: 'hidden',
-        // marginLeft: '-140px',
-        // border: 'white',
-        // borderStyle: 'solid',
-        // borderWidth: '2px',
+        marginLeft: '-240px',
+        marginBottom: '-60px',
+        marginTop: '-40px'
     },
     video: {
-        width: '100%',
-        height: 'auto',
+        objectFit: 'fill',
         zIndex: 1,
-        marginBottom: '-40px',
-        left: '-140px'
-        // marginTop: '-60px'
+        filter: 'brightness(120%)',
     },
     root: {
         position: 'absolute',
@@ -109,7 +103,7 @@ const styles = {
         marginBottom:'14px',
     },
     list_root:{
-        display: 'flex',
+        display: 'none',
         flexDirection: 'row',
         alignItems: 'center',
         width: '100%',
@@ -128,9 +122,22 @@ const styles = {
     up_btn: {
         padding: 0
     },
+    up_content: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'left',
+        paddingBottom: 10
+    },
+    up_title: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        fontWeight: 'bolder'
+    },
     sidebar_root: {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        width: '25vw'
     },
     lta_logo: {
         width: '100%',
@@ -141,19 +148,24 @@ const styles = {
         position: 'relative'
     },
     controlkey: {
-        width: '70%',
         display: 'flex',
         flexDirection: 'row',
+        justifyContent: 'center'
     },
     control_btn: {
         width: '100%',
         margin: '5px',
+        maxWidth: '8vw'
     },
     control_iconSize: {
-        fontSize: 60
+        fontSize: 50
     },
     control_text: {
-        color: 'white'
+        color: 'white',
+        fontSize: 30,
+        fontWeight: 'bolder',
+        marginBottom: 5,
+        marginTop: 5
     },
     alert: {
         display: 'flex',
@@ -200,11 +212,12 @@ const styles = {
         fontSize: 18
     },
     imgstyle: {
-        maxHeight: 300,
-        maxWidth: 300,
+        maxHeight: 200,
+        maxWidth: 200,
         height: 'auto',
         width: 'auto',
-        border: '#FF0000 4px solid'
+        border: '#FF0000 4px solid',
+        margin: '20px'
     },
     alertheader: {
         display: 'flex',
@@ -218,11 +231,6 @@ const styles = {
         maxWidth: 50,
         height: 'auto',
         width: 'auto'
-    },
-    alerttab_div: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center'
     },
     tablewidth: {
         width: '100%',

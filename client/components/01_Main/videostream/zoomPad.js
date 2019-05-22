@@ -36,34 +36,34 @@ class ZoomPad extends React.Component {
     };
 
     handleClick1() {
-        this.props.actions.usb({data: '1'});
+        crudAction.usb({data: '1'});
     }
     handleClick2() {
-        this.props.actions.usb({data: '2'});
+        crudAction.usb({data: '2'});
     }
     handleClick3() {
-        this.props.actions.usb({data: '3'});
+        crudAction.usb({data: '3'});
     }
     handleClick4() {
-        this.props.actions.usb({data: '4'});
+        crudAction.usb({data: '4'});
     }
     handleClick5() {
-        this.props.actions.usb({data: '5'});
+        crudAction.usb({data: '5'});
     }
     handleClick6() {
-        this.props.actions.usb({data: '6'});
+        crudAction.usb({data: '6'});
     }
     handleClick7() {
-        this.props.actions.usb({data: '7'});
+        crudAction.usb({data: '7'});
     }
     handleClick8() {
-        this.props.actions.usb({data: '8'});
+        crudAction.usb({data: '8'});
     }
     handleClick9() {
-        this.props.actions.usb({data: '9'});
+        crudAction.usb({data: '9'});
     }
     reset() {
-        this.props.actions.usb({data: '0'});
+        crudAction.usb({data: '0'});
     }
 
     handleKeyPress(e) {
@@ -96,7 +96,7 @@ class ZoomPad extends React.Component {
         return(
             <div>
                 <div className={classes.root}>
-                    <ButtonBase  onClick={this.handleClick7} />
+                    <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick7} />
                     <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick8} />
                     <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick9} />
                     <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick4} />
@@ -106,7 +106,9 @@ class ZoomPad extends React.Component {
                     <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick2} />
                     <ButtonBase className={classes.zoombutton} disableRipple onClick={this.handleClick3} />
                 </div>
-                <Button size="large" variant="contained" className={classes.resetbtn} onClick={this.reset}>RESET ZOOM</Button>
+                <Button variant="contained" className={classes.resetbtn} onClick={this.reset}>
+                    RESET ZOOM
+                </Button>
             </div>
         )
     }
